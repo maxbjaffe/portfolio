@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Max | Automation & AI Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0b;
+      --bg-secondary: #111113;
+      --bg-card: #18181b;
+      --bg-card-hover: #1f1f23;
+      --text-primary: #fafafa;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --accent: #f59e0b;
+      --accent-dim: rgba(245, 158, 11, 0.15);
+      --border: #27272a;
+      --border-light: #3f3f46;
+      --gradient-warm: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body: 'Newsreader', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--bg-primary); color: var(--text-primary); line-height: 1.7; font-size: 18px; }
+    body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); z-index: 1000; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 2rem; background: rgba(10, 10, 11, 0.8); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    nav .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; color: var(--text-primary); text-decoration: none; }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-family: var(--font-display); font-size: 0.875rem; font-weight: 500; color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 6rem; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -50%; right: -20%; width: 800px; height: 800px; background: radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, transparent 70%); pointer-events: none; }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-label { font-family: var(--font-mono); font-size: 0.875rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+    .hero-label::before { content: ''; width: 2rem; height: 1px; background: var(--accent); }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem; max-width: 900px; }
+    .hero h1 .highlight { background: var(--gradient-warm); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-description { font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin-bottom: 2.5rem; }
+    .hero-stats { display: flex; gap: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .stat { display: flex; flex-direction: column; }
+    .stat-number { font-family: var(--font-display); font-size: 2.5rem; font-weight: 700; color: var(--accent); }
+    .stat-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .projects { padding: 8rem 0; }
+    .section-header { margin-bottom: 4rem; }
+    .section-label { font-family: var(--font-mono); font-size: 0.875rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .section-title { font-family: var(--font-display); font-size: 2.5rem; font-weight: 600; }
+    .project { background: var(--bg-card); border: 1px solid var(--border); border-radius: 1rem; margin-bottom: 2rem; overflow: hidden; transition: all 0.3s ease; }
+    .project:hover { background: var(--bg-card-hover); border-color: var(--border-light); transform: translateY(-2px); }
+    .project-header { padding: 2rem 2.5rem; cursor: pointer; display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: start; }
+    .project-meta { display: flex; flex-direction: column; gap: 0.75rem; }
+    .project-category { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; }
+    .project-title { font-family: var(--font-display); font-size: 1.75rem; font-weight: 600; line-height: 1.3; }
+    .project-tagline { color: var(--text-secondary); font-size: 1.1rem; }
+    .project-toggle { width: 3rem; height: 3rem; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-muted); transition: all 0.3s; flex-shrink: 0; }
+    .project:hover .project-toggle { border-color: var(--accent); color: var(--accent); }
+    .project.expanded .project-toggle { transform: rotate(45deg); background: var(--accent); border-color: var(--accent); color: var(--bg-primary); }
+    .project-content { display: none; padding: 0 2.5rem 2.5rem; border-top: 1px solid var(--border); }
+    .project.expanded .project-content { display: block; }
+    .case-study { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; padding-top: 2rem; }
+    .case-block { padding: 1.5rem; background: var(--bg-secondary); border-radius: 0.75rem; border: 1px solid var(--border); }
+    .case-block.full-width { grid-column: 1 / -1; }
+    .case-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem; }
+    .case-block h4 { font-family: var(--font-display); font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .case-block p, .case-block ul { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; }
+    .case-block ul { padding-left: 1.25rem; }
+    .case-block li { margin-bottom: 0.35rem; }
+    .tech-stack { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+    .tech-tag { font-family: var(--font-mono); font-size: 0.7rem; padding: 0.35rem 0.75rem; background: var(--accent-dim); color: var(--accent); border-radius: 2rem; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .about { padding: 8rem 0; background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: start; }
+    .about-label { font-family: var(--font-mono); font-size: 0.875rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .about h2 { font-family: var(--font-display); font-size: 2rem; font-weight: 600; margin-bottom: 1.5rem; }
+    .about-text p { color: var(--text-secondary); margin-bottom: 1.25rem; }
+    .about-text p:last-child { margin-bottom: 0; }
+    .expertise-list { list-style: none; display: grid; gap: 1rem; }
+    .expertise-item { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem; background: var(--bg-card); border-radius: 0.5rem; border: 1px solid var(--border); }
+    .expertise-icon { width: 2.5rem; height: 2.5rem; background: var(--accent-dim); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0; }
+    .expertise-content h4 { font-family: var(--font-display); font-size: 0.95rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .expertise-content p { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+    footer { padding: 4rem 0; text-align: center; }
+    .footer-content { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+    .contact-links { display: flex; gap: 1.5rem; }
+    .contact-links a { font-family: var(--font-display); font-size: 0.875rem; color: var(--text-secondary); text-decoration: none; padding: 0.75rem 1.5rem; border: 1px solid var(--border); border-radius: 2rem; transition: all 0.2s; }
+    .contact-links a:hover { border-color: var(--accent); color: var(--accent); }
+    .footer-note { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); }
+    @media (max-width: 768px) { .case-study { grid-template-columns: 1fr; } .about-grid { grid-template-columns: 1fr; gap: 2rem; } .hero-stats { flex-wrap: wrap; gap: 2rem; } .nav-links { display: none; } .project-header { grid-template-columns: 1fr auto; } }
+  </style>
+</head>
+<body>
+  <nav><div class="container"><a href="#" class="logo">max<span>.</span></a><ul class="nav-links"><li><a href="#projects">Projects</a></li><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li></ul></div></nav>
+  <section class="hero"><div class="container"><div class="hero-content">
+    <div class="hero-label">Automation & AI Engineering</div>
+    <h1>Building systems that <span class="highlight">actually work</span> for real families</h1>
+    <p class="hero-description">I design and build AI-powered automation systems that solve genuine pain points—from voice assistants to family logistics platforms. Every project starts with a real problem and ends with something people actually use.</p>
+    <div class="hero-stats"><div class="stat"><span class="stat-number">6+</span><span class="stat-label">Production Systems</span></div><div class="stat"><span class="stat-number">12+</span><span class="stat-label">API Integrations</span></div><div class="stat"><span class="stat-number">5</span><span class="stat-label">Daily Active Users</span></div></div>
+  </div></div></section>
+
+  <section class="projects" id="projects"><div class="container">
+    <div class="section-header"><div class="section-label">Case Studies</div><h2 class="section-title">Selected Projects</h2></div>
+
+    <article class="project">
+      <div class="project-header" onclick="toggleProject(this)">
+        <div class="project-meta"><span class="project-category">Voice AI</span><h3 class="project-title">Jarvis</h3><p class="project-tagline">Distributed voice assistant with family-aware context switching</p></div>
+        <div class="project-toggle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div>
+      </div>
+      <div class="project-content"><div class="case-study">
+        <div class="case-block"><div class="case-label">The Problem</div><p>Commercial voice assistants are generic and disconnected from family context. They can't remember that Riley has a math test tomorrow or that Alex prefers Boston sports updates.</p></div>
+        <div class="case-block"><div class="case-label">The Approach</div><p>Built a local-first voice assistant that runs on distributed hardware (N100 mini PC → Raspberry Pi nodes), with per-family-member profiles and context awareness.</p></div>
+        <div class="case-block"><div class="case-label">Key Decisions</div><ul><li>Local-first architecture for privacy and speed</li><li>Wake word detection via Picovoice</li><li>ElevenLabs for natural-sounding TTS with voice cloning</li><li>Deepgram for fast, accurate STT</li><li>Family profiles stored locally, context injected per-request</li></ul></div>
+        <div class="case-block"><div class="case-label">Outcomes</div><p>Working prototype with touchscreen UI, multiple room support planned, and integration points for calendar, weather, and school schedules. Daily use for morning briefings.</p></div>
+        <div class="case-block full-width"><div class="case-label">Tech Stack</div><div class="tech-stack"><span class="tech-tag">Python</span><span class="tech-tag">Claude API</span><span class="tech-tag">ElevenLabs</span><span class="tech-tag">Deepgram</span><span class="tech-tag">Picovoice</span><span class="tech-tag">Raspberry Pi</span><span class="tech-tag">Flask</span></div></div>
+      </div></div>
+    </article>
+
+    <article class="project">
+      <div class="project-header" onclick="toggleProject(this)">
+        <div class="project-meta"><span class="project-category">SMS-First Product</span><h3 class="project-title">GiftStash</h3><p class="project-tagline">Capture gift ideas via text message, organized automatically</p></div>
+        <div class="project-toggle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div>
+      </div>
+      <div class="project-content"><div class="case-study">
+        <div class="case-block"><div class="case-label">The Problem</div><p>Great gift ideas come at random moments—overhearing a comment, a text from someone. By the time you need them, they're forgotten. Apps require too much friction.</p></div>
+        <div class="case-block"><div class="case-label">The Approach</div><p>SMS-first design: text a gift idea to a number and it's automatically parsed, categorized by recipient, and stored. No app to open, no login required in the moment.</p></div>
+        <div class="case-block"><div class="case-label">Key Decisions</div><ul><li>A2P 10DLC compliance for reliable SMS delivery</li><li>Claude for natural language parsing (handles "mom would love those blue earrings from Nordstrom")</li><li>PWA for web access when browsing gift lists</li><li>Chrome extension for one-click capture while browsing</li></ul></div>
+        <div class="case-block"><div class="case-label">Outcomes</div><p>Family actively using for birthday and holiday planning. Captured 50+ gift ideas that would have been lost. Zero-friction input has transformed how we track gift inspiration.</p></div>
+        <div class="case-block full-width"><div class="case-label">Tech Stack</div><div class="tech-stack"><span class="tech-tag">Twilio</span><span class="tech-tag">Claude API</span><span class="tech-tag">Vercel</span><span class="tech-tag">React</span><span class="tech-tag">PWA</span><span class="tech-tag">Chrome Extension</span><span class="tech-tag">A2P Compliance</span></div></div>
+      </div></div>
+    </article>
+
+    <article class="project">
+      <div class="project-header" onclick="toggleProject(this)">
+        <div class="project-meta"><span class="project-category">Data Integration</span><h3 class="project-title">School District Dashboard</h3><p class="project-tagline">Unified view of multiple schools' calendars, events, and communications</p></div>
+        <div class="project-toggle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div>
+      </div>
+      <div class="project-content"><div class="case-study">
+        <div class="case-block"><div class="case-label">The Problem</div><p>With three kids across multiple schools, information comes from dozens of sources: emails, apps, websites, paper handouts. Critical dates get missed.</p></div>
+        <div class="case-block"><div class="case-label">The Approach</div><p>Aggregate and normalize data from multiple school sources into a single dashboard with smart filtering by child, event type, and urgency.</p></div>
+        <div class="case-block"><div class="case-label">Key Decisions</div><ul><li>Email parsing for school newsletter extraction</li><li>Calendar aggregation across school platforms</li><li>Child-specific views for quick daily reference</li><li>Integration with family DAKboard display</li></ul></div>
+        <div class="case-block"><div class="case-label">Outcomes</div><p>Single source of truth for school logistics. Reduced "I didn't know about that" moments. Morning briefings now include personalized school updates.</p></div>
+        <div class="case-block full-width"><div class="case-label">Tech Stack</div><div class="tech-stack"><span class="tech-tag">Python</span><span class="tech-tag">Gmail API</span><span class="tech-tag">Calendar APIs</span><span class="tech-tag">React</span><span class="tech-tag">DAKboard</span></div></div>
+      </div></div>
+    </article>
+
+    <article class="project">
+      <div class="project-header" onclick="toggleProject(this)">
+        <div class="project-meta"><span class="project-category">AI Automation</span><h3 class="project-title">Email Priority Inbox</h3><p class="project-tagline">AI-powered email triage that surfaces what actually matters</p></div>
+        <div class="project-toggle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div>
+      </div>
+      <div class="project-content"><div class="case-study">
+        <div class="case-block"><div class="case-label">The Problem</div><p>Email volume makes it impossible to distinguish urgent items from noise. Important messages from schools, family, or time-sensitive requests get buried.</p></div>
+        <div class="case-block"><div class="case-label">The Approach</div><p>AI-powered classification that understands personal context: who matters, what topics are urgent, and what can wait or be automated away entirely.</p></div>
+        <div class="case-block"><div class="case-label">Key Decisions</div><ul><li>Context-aware priority scoring (not just sender rules)</li><li>Integration with family calendar for deadline awareness</li><li>Digest generation for low-priority batches</li><li>Learning from manual overrides</li></ul></div>
+        <div class="case-block"><div class="case-label">Outcomes</div><p>Reduced email processing time significantly. Critical school communications now surfaced immediately. Marketing and low-priority items auto-sorted.</p></div>
+        <div class="case-block full-width"><div class="case-label">Tech Stack</div><div class="tech-stack"><span class="tech-tag">Claude API</span><span class="tech-tag">Gmail API</span><span class="tech-tag">Python</span><span class="tech-tag">Vercel</span></div></div>
+      </div></div>
+    </article>
+
+    <article class="project">
+      <div class="project-header" onclick="toggleProject(this)">
+        <div class="project-meta"><span class="project-category">AI Education</span><h3 class="project-title">Study Buddy</h3><p class="project-tagline">AI-powered flashcard app designed for how kids actually learn</p></div>
+        <div class="project-toggle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div>
+      </div>
+      <div class="project-content"><div class="case-study">
+        <div class="case-block"><div class="case-label">The Problem</div><p>Traditional flashcard apps are boring and don't adapt to individual learning patterns. Kids lose interest quickly, and parents can't easily create good study materials.</p></div>
+        <div class="case-block"><div class="case-label">The Approach</div><p>AI generates age-appropriate flashcards from any topic, adapts difficulty based on performance, and keeps engagement high with encouraging feedback.</p></div>
+        <div class="case-block"><div class="case-label">Key Decisions</div><ul><li>Prompt engineering for kid-friendly explanations</li><li>Spaced repetition algorithm for retention</li><li>Parent dashboard for progress tracking</li><li>Voice input option for younger kids</li></ul></div>
+        <div class="case-block"><div class="case-label">Outcomes</div><p>Used weekly for spelling, math facts, and science vocabulary. Kids actually ask to use it—the AI encouragement and adaptive difficulty keep them engaged.</p></div>
+        <div class="case-block full-width"><div class="case-label">Tech Stack</div><div class="tech-stack"><span class="tech-tag">Claude API</span><span class="tech-tag">React</span><span class="tech-tag">Vercel</span><span class="tech-tag">Web Speech API</span></div></div>
+      </div></div>
+    </article>
+
+    <article class="project">
+      <div class="project-header" onclick="toggleProject(this)">
+        <div class="project-meta"><span class="project-category">Operations System</span><h3 class="project-title">Family HQ</h3><p class="project-tagline">Notion-based command center for household operations</p></div>
+        <div class="project-toggle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div>
+      </div>
+      <div class="project-content"><div class="case-study">
+        <div class="case-block"><div class="case-label">The Problem</div><p>Running a household with three kids involves hundreds of recurring tasks, decisions, and information that lives in different people's heads or scattered systems.</p></div>
+        <div class="case-block"><div class="case-label">The Approach</div><p>Centralized Notion workspace that serves as the single source of truth for schedules, contacts, recurring tasks, kid info, vendor details, and household SOPs.</p></div>
+        <div class="case-block"><div class="case-label">Key Decisions</div><ul><li>Relational databases linking kids → activities → schedules → contacts</li><li>Template system for recurring events (birthday party planning, etc.)</li><li>Mobile-friendly views for quick access</li><li>Integration points for automation systems</li></ul></div>
+        <div class="case-block"><div class="case-label">Outcomes</div><p>Eliminated "where's that info?" moments. New babysitters can find emergency contacts in seconds. Household runs more smoothly with less mental overhead.</p></div>
+        <div class="case-block full-width"><div class="case-label">Tech Stack</div><div class="tech-stack"><span class="tech-tag">Notion</span><span class="tech-tag">Notion API</span><span class="tech-tag">Zapier</span><span class="tech-tag">Apple Shortcuts</span></div></div>
+      </div></div>
+    </article>
+  </div></section>
+
+  <section class="about" id="about"><div class="container"><div class="about-grid">
+    <div>
+      <div class="about-label">About</div>
+      <h2>Building with intention</h2>
+      <div class="about-text">
+        <p>I approach automation and AI the same way I approach any engineering problem: start with a real pain point, understand the constraints, and build something that works reliably in the real world.</p>
+        <p>My background in measurement and analytics taught me to focus on outcomes, not just outputs. Every system I build has clear success criteria and gets iterated based on actual usage.</p>
+        <p>Currently exploring what's possible when you combine modern AI capabilities with thoughtful systems design for personal and family use cases.</p>
+      </div>
+    </div>
+    <div>
+      <ul class="expertise-list">
+        <li class="expertise-item">
+          <div class="expertise-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg></div>
+          <div class="expertise-content"><h4>AI Integration</h4><p>Claude API, prompt engineering, context management, multi-model architectures</p></div>
+        </li>
+        <li class="expertise-item">
+          <div class="expertise-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg></div>
+          <div class="expertise-content"><h4>Automation Systems</h4><p>Apple Shortcuts, Zapier, custom integrations, event-driven workflows</p></div>
+        </li>
+        <li class="expertise-item">
+          <div class="expertise-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg></div>
+          <div class="expertise-content"><h4>Full-Stack Development</h4><p>React, Python, Vercel, API design, database architecture</p></div>
+        </li>
+        <li class="expertise-item">
+          <div class="expertise-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+          <div class="expertise-content"><h4>Voice & Conversational AI</h4><p>ElevenLabs, Deepgram, Picovoice, conversational design</p></div>
+        </li>
+      </ul>
+    </div>
+  </div></div></section>
+
+  <footer id="contact"><div class="container"><div class="footer-content">
+    <div class="contact-links">
+      <a href="mailto:your@email.com">Email</a>
+      <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+      <a href="https://github.com/yourprofile" target="_blank">GitHub</a>
+    </div>
+    <p class="footer-note">Built with intention. Shipped with Claude.</p>
+  </div></div></footer>
+
+  <script>
+    function toggleProject(header) { const project = header.closest('.project'); project.classList.toggle('expanded'); }
+    const projects = document.querySelectorAll('.project');
+    const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; } }); }, { threshold: 0.1 });
+    projects.forEach(project => { project.style.opacity = '0'; project.style.transform = 'translateY(20px)'; project.style.transition = 'opacity 0.6s ease, transform 0.6s ease'; observer.observe(project); });
+  </script>
+</body>
+</html>
