@@ -25,12 +25,13 @@
       --font-body: 'Newsreader', Georgia, serif;
       --font-mono: 'JetBrains Mono', monospace;
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body { font-family: var(--font-body); background: var(--bg-primary); color: var(--text-primary); line-height: 1.7; font-size: 18px; }
     body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); z-index: 1000; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    
+    /* Navigation */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 2rem; background: rgba(10, 10, 11, 0.8); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
     nav .container { display: flex; justify-content: space-between; align-items: center; }
     .logo { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; color: var(--text-primary); text-decoration: none; }
@@ -38,6 +39,8 @@
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a { font-family: var(--font-display); font-size: 0.875rem; font-weight: 500; color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--accent); }
+    
+    /* Hero */
     .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 6rem; position: relative; overflow: hidden; }
     .hero::before { content: ''; position: absolute; top: -50%; right: -20%; width: 800px; height: 800px; background: radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, transparent 70%); pointer-events: none; }
     .hero-content { position: relative; z-index: 1; }
@@ -50,10 +53,15 @@
     .stat { display: flex; flex-direction: column; }
     .stat-number { font-family: var(--font-display); font-size: 2.5rem; font-weight: 700; color: var(--accent); }
     .stat-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
-    .projects { padding: 8rem 0; }
+    
+    /* Sections */
+    .projects, .gallery { padding: 8rem 0; }
     .section-header { margin-bottom: 4rem; }
     .section-label { font-family: var(--font-mono); font-size: 0.875rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
     .section-title { font-family: var(--font-display); font-size: 2.5rem; font-weight: 600; }
+    .section-description { color: var(--text-secondary); max-width: 600px; margin-top: 1rem; }
+    
+    /* Project Cards */
     .project { background: var(--bg-card); border: 1px solid var(--border); border-radius: 1rem; margin-bottom: 2rem; overflow: hidden; transition: all 0.3s ease; }
     .project:hover { background: var(--bg-card-hover); border-color: var(--border-light); transform: translateY(-2px); }
     .project-header { padding: 2rem 2.5rem; cursor: pointer; display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: start; }
@@ -66,38 +74,85 @@
     .project.expanded .project-toggle { transform: rotate(45deg); background: var(--accent); border-color: var(--accent); color: var(--bg-primary); }
     .project-content { display: none; padding: 0 2.5rem 2.5rem; border-top: 1px solid var(--border); }
     .project.expanded .project-content { display: block; }
+    
+    /* Case Study Grid */
     .case-study { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; padding-top: 2rem; }
     .case-block { padding: 1.5rem; background: var(--bg-secondary); border-radius: 0.75rem; border: 1px solid var(--border); }
     .case-block.full-width { grid-column: 1 / -1; }
     .case-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem; }
-    .case-block h4 { font-family: var(--font-display); font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
     .case-block p, .case-block ul { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; }
     .case-block ul { padding-left: 1.25rem; }
     .case-block li { margin-bottom: 0.35rem; }
     .tech-stack { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
     .tech-tag { font-family: var(--font-mono); font-size: 0.7rem; padding: 0.35rem 0.75rem; background: var(--accent-dim); color: var(--accent); border-radius: 2rem; border: 1px solid rgba(245, 158, 11, 0.3); }
-    .about { padding: 8rem 0; background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    
+    /* Project Images */
+    .project-images { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .project-image { width: 80px; height: 80px; border-radius: 0.5rem; overflow: hidden; border: 2px solid var(--border); transition: all 0.3s; cursor: pointer; }
+    .project-image:hover { border-color: var(--accent); transform: scale(1.05); }
+    .project-image img { width: 100%; height: 100%; object-fit: cover; }
+    
+    /* Gallery */
+    .gallery { background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+    .gallery-item { position: relative; border-radius: 1rem; overflow: hidden; background: var(--bg-card); border: 1px solid var(--border); transition: all 0.3s; cursor: pointer; }
+    .gallery-item:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+    .gallery-item img { width: 100%; height: auto; display: block; }
+    .gallery-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem; background: linear-gradient(transparent, rgba(0,0,0,0.9)); opacity: 0; transition: opacity 0.3s; }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-overlay .tool-badge { font-family: var(--font-mono); font-size: 0.65rem; padding: 0.25rem 0.5rem; background: var(--accent); color: var(--bg-primary); border-radius: 1rem; display: inline-block; margin-bottom: 0.5rem; }
+    .gallery-overlay .image-title { font-family: var(--font-display); font-size: 0.85rem; font-weight: 500; color: var(--text-primary); }
+    .gallery-overlay .image-project { font-size: 0.75rem; color: var(--text-muted); }
+    
+    /* Avatar Strip */
+    .avatar-strip { display: flex; gap: 1rem; justify-content: center; margin-top: 3rem; padding: 2rem; background: var(--bg-card); border-radius: 1rem; border: 1px solid var(--border); }
+    .avatar-strip-item { width: 64px; height: 64px; border-radius: 50%; overflow: hidden; border: 2px solid var(--border); transition: all 0.3s; }
+    .avatar-strip-item:hover { border-color: var(--accent); transform: scale(1.1); }
+    .avatar-strip-item img { width: 100%; height: 100%; object-fit: cover; }
+    .avatar-label { text-align: center; margin-top: 1rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); }
+
+    /* Lightbox */
+    .lightbox { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.95); z-index: 200; display: none; align-items: center; justify-content: center; padding: 2rem; }
+    .lightbox.active { display: flex; }
+    .lightbox-content { max-width: 90vw; max-height: 90vh; position: relative; }
+    .lightbox-content img { max-width: 100%; max-height: 85vh; border-radius: 0.5rem; }
+    .lightbox-info { margin-top: 1rem; text-align: center; }
+    .lightbox-close { position: absolute; top: 1rem; right: 1rem; width: 3rem; height: 3rem; border: none; background: var(--bg-card); border-radius: 50%; color: var(--text-primary); cursor: pointer; font-size: 1.5rem; }
+    
+    /* About */
+    .about { padding: 8rem 0; }
     .about-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: start; }
     .about-label { font-family: var(--font-mono); font-size: 0.875rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
     .about h2 { font-family: var(--font-display); font-size: 2rem; font-weight: 600; margin-bottom: 1.5rem; }
     .about-text p { color: var(--text-secondary); margin-bottom: 1.25rem; }
-    .about-text p:last-child { margin-bottom: 0; }
     .expertise-list { list-style: none; display: grid; gap: 1rem; }
     .expertise-item { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem; background: var(--bg-card); border-radius: 0.5rem; border: 1px solid var(--border); }
     .expertise-icon { width: 2.5rem; height: 2.5rem; background: var(--accent-dim); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0; }
     .expertise-content h4 { font-family: var(--font-display); font-size: 0.95rem; font-weight: 600; margin-bottom: 0.25rem; }
     .expertise-content p { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+    
+    /* Footer */
     footer { padding: 4rem 0; text-align: center; }
     .footer-content { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
     .contact-links { display: flex; gap: 1.5rem; }
     .contact-links a { font-family: var(--font-display); font-size: 0.875rem; color: var(--text-secondary); text-decoration: none; padding: 0.75rem 1.5rem; border: 1px solid var(--border); border-radius: 2rem; transition: all 0.2s; }
     .contact-links a:hover { border-color: var(--accent); color: var(--accent); }
     .footer-note { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); }
-    @media (max-width: 768px) { .case-study { grid-template-columns: 1fr; } .about-grid { grid-template-columns: 1fr; gap: 2rem; } .hero-stats { flex-wrap: wrap; gap: 2rem; } .nav-links { display: none; } .project-header { grid-template-columns: 1fr auto; } }
+    
+    /* Responsive */
+    @media (max-width: 768px) { 
+      .case-study { grid-template-columns: 1fr; } 
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; } 
+      .hero-stats { flex-wrap: wrap; gap: 2rem; } 
+      .nav-links { display: none; } 
+      .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+      .avatar-strip { flex-wrap: wrap; }
+    }
   </style>
 </head>
 <body>
-  <nav><div class="container"><a href="#" class="logo">max<span>.</span></a><ul class="nav-links"><li><a href="#projects">Projects</a></li><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li></ul></div></nav>
+  <nav><div class="container"><a href="#" class="logo">max<span>.</span></a><ul class="nav-links"><li><a href="#projects">Projects</a></li><li><a href="#gallery">AI Gallery</a></li><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li></ul></div></nav>
+
   <section class="hero"><div class="container"><div class="hero-content">
     <div class="hero-label">Automation & AI Engineering</div>
     <h1>Building systems that <span class="highlight">actually work</span> for real families</h1>
@@ -108,6 +163,7 @@
   <section class="projects" id="projects"><div class="container">
     <div class="section-header"><div class="section-label">Case Studies</div><h2 class="section-title">Selected Projects</h2></div>
 
+    <!-- Jarvis -->
     <article class="project">
       <div class="project-header" onclick="toggleProject(this)">
         <div class="project-meta"><span class="project-category">Voice AI</span><h3 class="project-title">Jarvis</h3><p class="project-tagline">Distributed voice assistant with family-aware context switching</p></div>
@@ -122,6 +178,7 @@
       </div></div>
     </article>
 
+    <!-- GiftStash -->
     <article class="project">
       <div class="project-header" onclick="toggleProject(this)">
         <div class="project-meta"><span class="project-category">SMS-First Product</span><h3 class="project-title">GiftStash</h3><p class="project-tagline">Capture gift ideas via text message, organized automatically</p></div>
@@ -133,9 +190,19 @@
         <div class="case-block"><div class="case-label">Key Decisions</div><ul><li>A2P 10DLC compliance for reliable SMS delivery</li><li>Claude for natural language parsing (handles "mom would love those blue earrings from Nordstrom")</li><li>PWA for web access when browsing gift lists</li><li>Chrome extension for one-click capture while browsing</li></ul></div>
         <div class="case-block"><div class="case-label">Outcomes</div><p>Family actively using for birthday and holiday planning. Captured 50+ gift ideas that would have been lost. Zero-friction input has transformed how we track gift inspiration.</p></div>
         <div class="case-block full-width"><div class="case-label">Tech Stack</div><div class="tech-stack"><span class="tech-tag">Twilio</span><span class="tech-tag">Claude API</span><span class="tech-tag">Vercel</span><span class="tech-tag">React</span><span class="tech-tag">PWA</span><span class="tech-tag">Chrome Extension</span><span class="tech-tag">A2P Compliance</span></div></div>
+        <div class="case-block full-width"><div class="case-label">AI-Generated Assets</div>
+          <div class="project-images">
+            <div class="project-image" onclick="openLightbox('images/giftstash/GiftStashIcon-512.png', 'App Icon', 'GiftStash')"><img src="images/giftstash/GiftStashIcon-512.png" alt="GiftStash Icon"></div>
+            <div class="project-image" onclick="openLightbox('images/giftstash/GS_Sharing_Familyoncouch.png', 'Family Sharing Feature', 'GiftStash')"><img src="images/giftstash/GS_Sharing_Familyoncouch.png" alt="Family Sharing"></div>
+            <div class="project-image" onclick="openLightbox('images/giftstash/DITL Mias gift stash.png', 'Day In The Life - Mia', 'GiftStash')"><img src="images/giftstash/DITL Mias gift stash.png" alt="Day In The Life"></div>
+            <div class="project-image" onclick="openLightbox('images/avatars/young-mom.png', 'User Avatar - Young Mom', 'GiftStash')"><img src="images/avatars/young-mom.png" alt="Avatar"></div>
+            <div class="project-image" onclick="openLightbox('images/avatars/grandpa.png', 'User Avatar - Grandpa', 'GiftStash')"><img src="images/avatars/grandpa.png" alt="Avatar"></div>
+          </div>
+        </div>
       </div></div>
     </article>
 
+    <!-- School District Dashboard -->
     <article class="project">
       <div class="project-header" onclick="toggleProject(this)">
         <div class="project-meta"><span class="project-category">Data Integration</span><h3 class="project-title">School District Dashboard</h3><p class="project-tagline">Unified view of multiple schools' calendars, events, and communications</p></div>
@@ -150,6 +217,7 @@
       </div></div>
     </article>
 
+    <!-- Email Priority Inbox -->
     <article class="project">
       <div class="project-header" onclick="toggleProject(this)">
         <div class="project-meta"><span class="project-category">AI Automation</span><h3 class="project-title">Email Priority Inbox</h3><p class="project-tagline">AI-powered email triage that surfaces what actually matters</p></div>
@@ -164,6 +232,7 @@
       </div></div>
     </article>
 
+    <!-- Study Buddy -->
     <article class="project">
       <div class="project-header" onclick="toggleProject(this)">
         <div class="project-meta"><span class="project-category">AI Education</span><h3 class="project-title">Study Buddy</h3><p class="project-tagline">AI-powered flashcard app designed for how kids actually learn</p></div>
@@ -175,9 +244,19 @@
         <div class="case-block"><div class="case-label">Key Decisions</div><ul><li>Prompt engineering for kid-friendly explanations</li><li>Spaced repetition algorithm for retention</li><li>Parent dashboard for progress tracking</li><li>Voice input option for younger kids</li></ul></div>
         <div class="case-block"><div class="case-label">Outcomes</div><p>Used weekly for spelling, math facts, and science vocabulary. Kids actually ask to use it—the AI encouragement and adaptive difficulty keep them engaged.</p></div>
         <div class="case-block full-width"><div class="case-label">Tech Stack</div><div class="tech-stack"><span class="tech-tag">Claude API</span><span class="tech-tag">React</span><span class="tech-tag">Vercel</span><span class="tech-tag">Web Speech API</span></div></div>
+        <div class="case-block full-width"><div class="case-label">AI-Generated Assets</div>
+          <div class="project-images">
+            <div class="project-image" onclick="openLightbox('images/studybuddy/CottleCub_Welcome.png', 'CottleCub - Welcome', 'Study Buddy')"><img src="images/studybuddy/CottleCub_Welcome.png" alt="CottleCub Welcome"></div>
+            <div class="project-image" onclick="openLightbox('images/studybuddy/CottleCub_Math.png', 'CottleCub - Math Subject', 'Study Buddy')"><img src="images/studybuddy/CottleCub_Math.png" alt="CottleCub Math"></div>
+            <div class="project-image" onclick="openLightbox('images/studybuddy/CottleCub_Science.png', 'CottleCub - Science Subject', 'Study Buddy')"><img src="images/studybuddy/CottleCub_Science.png" alt="CottleCub Science"></div>
+            <div class="project-image" onclick="openLightbox('images/studybuddy/CottleCub_Dance_Break.png', 'CottleCub - Dance Break', 'Study Buddy')"><img src="images/studybuddy/CottleCub_Dance_Break.png" alt="CottleCub Dance Break"></div>
+            <div class="project-image" onclick="openLightbox('images/studybuddy/CottleCub_You_Did_It.png', 'CottleCub - You Did It!', 'Study Buddy')"><img src="images/studybuddy/CottleCub_You_Did_It.png" alt="CottleCub You Did It"></div>
+          </div>
+        </div>
       </div></div>
     </article>
 
+    <!-- Family HQ -->
     <article class="project">
       <div class="project-header" onclick="toggleProject(this)">
         <div class="project-meta"><span class="project-category">Operations System</span><h3 class="project-title">Family HQ</h3><p class="project-tagline">Notion-based command center for household operations</p></div>
@@ -193,6 +272,72 @@
     </article>
   </div></section>
 
+  <!-- AI Gallery -->
+  <section class="gallery" id="gallery"><div class="container">
+    <div class="section-header">
+      <div class="section-label">AI Image Generation</div>
+      <h2 class="section-title">Visual Assets Gallery</h2>
+      <p class="section-description">All images generated with Google Gemini as part of the design process for these projects.</p>
+    </div>
+    
+    <div class="gallery-grid">
+      <div class="gallery-item" onclick="openLightbox('images/studybuddy/CottleCub_Welcome.png', 'CottleCub Mascot - Welcome State', 'Study Buddy')">
+        <img src="images/studybuddy/CottleCub_Welcome.png" alt="CottleCub Welcome">
+        <div class="gallery-overlay"><span class="tool-badge">Gemini</span><div class="image-title">CottleCub - Welcome</div><div class="image-project">Study Buddy</div></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('images/studybuddy/CottleCub_Dance_Break.png', 'CottleCub taking a dance break', 'Study Buddy')">
+        <img src="images/studybuddy/CottleCub_Dance_Break.png" alt="CottleCub Dance Break">
+        <div class="gallery-overlay"><span class="tool-badge">Gemini</span><div class="image-title">Dance Break Activity</div><div class="image-project">Study Buddy</div></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('images/studybuddy/CottleCub_You_Did_It.png', 'CottleCub celebrating success', 'Study Buddy')">
+        <img src="images/studybuddy/CottleCub_You_Did_It.png" alt="CottleCub Celebration">
+        <div class="gallery-overlay"><span class="tool-badge">Gemini</span><div class="image-title">You Did It!</div><div class="image-project">Study Buddy</div></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('images/giftstash/GiftStashIcon-512.png', 'GiftStash app icon', 'GiftStash')">
+        <img src="images/giftstash/GiftStashIcon-512.png" alt="GiftStash Icon">
+        <div class="gallery-overlay"><span class="tool-badge">Gemini</span><div class="image-title">App Icon</div><div class="image-project">GiftStash</div></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('images/giftstash/GS_Sharing_Familyoncouch.png', 'Family sharing gifts together', 'GiftStash')">
+        <img src="images/giftstash/GS_Sharing_Familyoncouch.png" alt="Family Sharing">
+        <div class="gallery-overlay"><span class="tool-badge">Gemini</span><div class="image-title">Family Sharing</div><div class="image-project">GiftStash</div></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('images/giftstash/DITL Mias gift stash.png', 'Day in the life illustration', 'GiftStash')">
+        <img src="images/giftstash/DITL Mias gift stash.png" alt="Day In The Life">
+        <div class="gallery-overlay"><span class="tool-badge">Gemini</span><div class="image-title">Day In The Life</div><div class="image-project">GiftStash</div></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('images/giftstash/DITL Chloe Chaos To Calm.png', 'Chaos to Calm illustration', 'GiftStash')">
+        <img src="images/giftstash/DITL Chloe Chaos To Calm.png" alt="Chaos to Calm">
+        <div class="gallery-overlay"><span class="tool-badge">Gemini</span><div class="image-title">Chaos To Calm</div><div class="image-project">GiftStash</div></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('images/roblox/RobloxCottle_Victory.png', 'Victory celebration pose', 'Roblox School Adventures')">
+        <img src="images/roblox/RobloxCottle_Victory.png" alt="Victory Pose">
+        <div class="gallery-overlay"><span class="tool-badge">Gemini</span><div class="image-title">Victory Pose</div><div class="image-project">Roblox Game</div></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('images/studybuddy/CottleCub_Math.png', 'Math subject icon', 'Study Buddy')">
+        <img src="images/studybuddy/CottleCub_Math.png" alt="CottleCub Math">
+        <div class="gallery-overlay"><span class="tool-badge">Gemini</span><div class="image-title">Math Subject</div><div class="image-project">Study Buddy</div></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('images/studybuddy/CottleCub_Science.png', 'Science subject icon', 'Study Buddy')">
+        <img src="images/studybuddy/CottleCub_Science.png" alt="CottleCub Science">
+        <div class="gallery-overlay"><span class="tool-badge">Gemini</span><div class="image-title">Science Subject</div><div class="image-project">Study Buddy</div></div>
+      </div>
+    </div>
+
+    <!-- Avatar Strip -->
+    <div class="avatar-strip">
+      <div class="avatar-strip-item"><img src="images/avatars/young-mom.png" alt="Young Mom"></div>
+      <div class="avatar-strip-item"><img src="images/avatars/grandpa.png" alt="Grandpa"></div>
+      <div class="avatar-strip-item"><img src="images/avatars/teen-girl-braces.png" alt="Teen Girl"></div>
+      <div class="avatar-strip-item"><img src="images/avatars/superhero-boy.png" alt="Superhero Boy"></div>
+      <div class="avatar-strip-item"><img src="images/avatars/woman-1-256.png" alt="Woman"></div>
+      <div class="avatar-strip-item"><img src="images/avatars/man-1-256.png" alt="Man"></div>
+      <div class="avatar-strip-item"><img src="images/avatars/elder-woman-1-256.png" alt="Elder Woman"></div>
+      <div class="avatar-strip-item"><img src="images/avatars/elder-man-1-256.png" alt="Elder Man"></div>
+    </div>
+    <p class="avatar-label">50+ diverse user avatars generated for GiftStash</p>
+  </div></section>
+
+  <!-- About -->
   <section class="about" id="about"><div class="container"><div class="about-grid">
     <div>
       <div class="about-label">About</div>
@@ -221,10 +366,15 @@
           <div class="expertise-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
           <div class="expertise-content"><h4>Voice & Conversational AI</h4><p>ElevenLabs, Deepgram, Picovoice, conversational design</p></div>
         </li>
+        <li class="expertise-item">
+          <div class="expertise-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></div>
+          <div class="expertise-content"><h4>AI Image Generation</h4><p>Gemini, prompt crafting for consistent characters and brand assets</p></div>
+        </li>
       </ul>
     </div>
   </div></div></section>
 
+  <!-- Footer -->
   <footer id="contact"><div class="container"><div class="footer-content">
     <div class="contact-links">
       <a href="mailto:your@email.com">Email</a>
@@ -234,11 +384,62 @@
     <p class="footer-note">Built with intention. Shipped with Claude.</p>
   </div></div></footer>
 
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <img id="lightbox-img" src="" alt="">
+      <div class="lightbox-info">
+        <span class="tool-badge" style="background: var(--accent); color: var(--bg-primary); padding: 0.25rem 0.75rem; border-radius: 1rem; font-family: var(--font-mono); font-size: 0.75rem;">Gemini</span>
+        <p id="lightbox-title" style="font-family: var(--font-display); font-size: 1.25rem; margin-top: 0.75rem;"></p>
+        <p id="lightbox-project" style="color: var(--text-muted); font-size: 0.875rem;"></p>
+      </div>
+    </div>
+  </div>
+
   <script>
-    function toggleProject(header) { const project = header.closest('.project'); project.classList.toggle('expanded'); }
-    const projects = document.querySelectorAll('.project');
-    const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; } }); }, { threshold: 0.1 });
-    projects.forEach(project => { project.style.opacity = '0'; project.style.transform = 'translateY(20px)'; project.style.transition = 'opacity 0.6s ease, transform 0.6s ease'; observer.observe(project); });
+    // Project toggle
+    function toggleProject(header) {
+      const project = header.closest('.project');
+      project.classList.toggle('expanded');
+    }
+
+    // Lightbox
+    function openLightbox(src, title, project) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox-title').textContent = title;
+      document.getElementById('lightbox-project').textContent = project;
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Close on escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Smooth reveal on scroll
+    const projects = document.querySelectorAll('.project, .gallery-item');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    projects.forEach(project => {
+      project.style.opacity = '0';
+      project.style.transform = 'translateY(20px)';
+      project.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(project);
+    });
   </script>
 </body>
 </html>
