@@ -146,7 +146,7 @@
     <div class="hero-label">Automation & AI Engineering</div>
     <h1>Building systems that <span class="highlight">actually work</span> for real families</h1>
     <p class="hero-description">I design and build AI-powered automation systems that solve genuine pain points—from voice assistants to family logistics platforms. Every project starts with a real problem and ends with something people actually use.</p>
-    <div class="hero-stats"><div class="stat"><span class="stat-number">6+</span><span class="stat-label">Production Systems</span></div><div class="stat"><span class="stat-number">12+</span><span class="stat-label">API Integrations</span></div><div class="stat"><span class="stat-number">5</span><span class="stat-label">Daily Active Users</span></div></div>
+    <div class="hero-stats"><div class="stat"><span class="stat-number">7+</span><span class="stat-label">Production Systems</span></div><div class="stat"><span class="stat-number">15+</span><span class="stat-label">API Integrations</span></div><div class="stat"><span class="stat-number">5</span><span class="stat-label">Daily Active Users</span></div></div>
   </div></div></section>
 
   <section class="projects" id="projects"><div class="container">
@@ -220,6 +220,21 @@
         <div class="case-block"><div class="case-label">Key Decisions</div><ul><li>Context-aware priority scoring (not just sender rules)</li><li>Integration with family calendar for deadline awareness</li><li>Digest generation for low-priority batches</li><li>Learning from manual overrides</li></ul></div>
         <div class="case-block"><div class="case-label">Outcomes</div><p>Reduced email processing time significantly. Critical school communications now surfaced immediately. Marketing and low-priority items auto-sorted.</p></div>
         <div class="case-block full-width"><div class="case-label">Tech Stack</div><div class="tech-stack"><span class="tech-tag">Claude API</span><span class="tech-tag">Gmail API</span><span class="tech-tag">Python</span><span class="tech-tag">Vercel</span></div></div>
+      </div></div>
+    </article>
+
+    <!-- Morning Rundown -->
+    <article class="project">
+      <div class="project-header" onclick="toggleProject(this)">
+        <div class="project-meta"><span class="project-category">Personal Productivity</span><h3 class="project-title">Morning Rundown</h3><p class="project-tagline">Daily focus assistant that synthesizes Calendar, Todoist, and Notion into one decision</p></div>
+        <div class="project-toggle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div>
+      </div>
+      <div class="project-content"><div class="case-study">
+        <div class="case-block"><div class="case-label">The Problem</div><p>Morning starts with checking three apps: Calendar for time reality, Todoist for tasks, Notion for projects. By the time you've context-switched through all three, you've lost momentum—and projects quietly slip because they don't have due dates screaming at you.</p></div>
+        <div class="case-block"><div class="case-label">The Approach</div><p>A single API endpoint that pulls from all three sources, sends to Claude with a custom system prompt, and returns a synthesized briefing. Works via Siri on any Apple device.</p></div>
+        <div class="case-block"><div class="case-label">Key Decisions</div><ul><li>Serverless deployment for cross-device access (Mac, iPhone, iPad)</li><li>Calendar passed from device (privacy), Todoist/Notion fetched server-side</li><li>"Last Worked" field in Notion flags projects stale after 7 days</li><li>Ends with a mode question: task day, builder day, or mix?</li></ul></div>
+        <div class="case-block"><div class="case-label">Outcomes</div><p>15 seconds from "Hey Siri" to knowing exactly what today should look like. Surfaced three slipping projects in the first week that would have otherwise drifted.</p></div>
+        <div class="case-block full-width"><div class="case-label">Tech Stack</div><div class="tech-stack"><span class="tech-tag">Claude API</span><span class="tech-tag">Todoist API</span><span class="tech-tag">Notion API</span><span class="tech-tag">Vercel</span><span class="tech-tag">Python</span><span class="tech-tag">Apple Shortcuts</span></div></div>
       </div></div>
     </article>
 
