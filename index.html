@@ -77,6 +77,10 @@
     .case-block li { margin-bottom: 0.35rem; }
     .tech-stack { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
     .tech-tag { font-family: var(--font-mono); font-size: 0.7rem; padding: 0.35rem 0.75rem; background: var(--accent-dim); color: var(--accent); border-radius: 2rem; border: 1px solid rgba(245, 158, 11, 0.3); }
+
+    /* Project Hero Image */
+    .project-hero { width: 100%; max-height: 400px; object-fit: cover; border-radius: 0.75rem; margin-bottom: 2rem; border: 1px solid var(--border); cursor: pointer; transition: transform 0.3s, border-color 0.3s; }
+    .project-hero:hover { border-color: var(--accent); transform: scale(1.01); }
     
     /* Project Images */
     .project-images { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1rem; }
@@ -143,41 +147,27 @@
   <nav><div class="container"><a href="#" class="logo"><span class="logo-prompt">>_</span> Max Jaffe.ai<span class="logo-cursor"></span></a><ul class="nav-links"><li><a href="#projects">Work</a></li><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li></ul></div></nav>
 
   <section class="hero"><div class="container"><div class="hero-content">
-    <div class="hero-label">Automation & AI Engineering</div>
-    <h1>Building systems that <span class="highlight">actually work</span> for real families</h1>
-    <p class="hero-description">I design and build AI-powered automation systems that solve genuine pain points—from voice assistants to family logistics platforms. Every project starts with a real problem and ends with something people actually use.</p>
-    <div class="hero-stats"><div class="stat"><span class="stat-number">7+</span><span class="stat-label">Production Systems</span></div><div class="stat"><span class="stat-number">15+</span><span class="stat-label">API Integrations</span></div><div class="stat"><span class="stat-number">5</span><span class="stat-label">Daily Active Users</span></div></div>
+    <div class="hero-label">Problem Solver & Builder</div>
+    <h1>Identify the friction. <span class="highlight">Build the fix.</span></h1>
+    <p class="hero-description">I find real problems, understand why they persist, then build targeted solutions that actually get used. Every project here started with friction I couldn't ignore—and ended with something that changed daily behavior.</p>
+    <div class="hero-stats"><div class="stat"><span class="stat-number">7</span><span class="stat-label">Production Systems</span></div><div class="stat"><span class="stat-number">15+</span><span class="stat-label">API Integrations</span></div><div class="stat"><span class="stat-number">Daily</span><span class="stat-label">Active Usage</span></div></div>
   </div></div></section>
 
   <section class="projects" id="projects"><div class="container">
-    <div class="section-header"><div class="section-label">Case Studies</div><h2 class="section-title">Selected Projects</h2></div>
-
-    <!-- Jarvis -->
-    <article class="project">
-      <div class="project-header" onclick="toggleProject(this)">
-        <div class="project-meta"><span class="project-category">Voice AI</span><h3 class="project-title">Jarvis</h3><p class="project-tagline">Distributed voice assistant with family-aware context switching</p></div>
-        <div class="project-toggle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div>
-      </div>
-      <div class="project-content"><div class="case-study">
-        <div class="case-block"><div class="case-label">The Problem</div><p>Commercial voice assistants are generic and disconnected from family context. They can't remember that Riley has a math test tomorrow or that Alex prefers Boston sports updates.</p></div>
-        <div class="case-block"><div class="case-label">The Approach</div><p>Built a local-first voice assistant that runs on distributed hardware (N100 mini PC → Raspberry Pi nodes), with per-family-member profiles and context awareness.</p></div>
-        <div class="case-block"><div class="case-label">Key Decisions</div><ul><li>Local-first architecture for privacy and speed</li><li>Wake word detection via Picovoice</li><li>ElevenLabs for natural-sounding TTS with voice cloning</li><li>Deepgram for fast, accurate STT</li><li>Family profiles stored locally, context injected per-request</li></ul></div>
-        <div class="case-block"><div class="case-label">Outcomes</div><p>Working prototype with touchscreen UI, multiple room support planned, and integration points for calendar, weather, and school schedules. Daily use for morning briefings.</p></div>
-        <div class="case-block full-width"><div class="case-label">Tech Stack</div><div class="tech-stack"><span class="tech-tag">Python</span><span class="tech-tag">Claude API</span><span class="tech-tag">ElevenLabs</span><span class="tech-tag">Deepgram</span><span class="tech-tag">Picovoice</span><span class="tech-tag">Raspberry Pi</span><span class="tech-tag">Flask</span></div></div>
-      </div></div>
-    </article>
+    <div class="section-header"><div class="section-label">Friction → Solution → Outcome</div><h2 class="section-title">What I've Built</h2></div>
 
     <!-- GiftStash -->
     <article class="project">
       <div class="project-header" onclick="toggleProject(this)">
-        <div class="project-meta"><span class="project-category">SMS-First Product</span><h3 class="project-title">GiftStash</h3><p class="project-tagline">Capture gift ideas via text message, organized automatically</p></div>
+        <div class="project-meta"><span class="project-category">Zero-Friction Capture</span><h3 class="project-title">GiftStash</h3><p class="project-tagline">Text a gift idea. It's saved, parsed, and organized automatically.</p></div>
         <div class="project-toggle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div>
       </div>
       <div class="project-content"><div class="case-study">
-        <div class="case-block"><div class="case-label">The Problem</div><p>Great gift ideas come at random moments—overhearing a comment, a text from someone. By the time you need them, they're forgotten. Apps require too much friction.</p></div>
-        <div class="case-block"><div class="case-label">The Approach</div><p>SMS-first design: text a gift idea to a number and it's automatically parsed, categorized by recipient, and stored. No app to open, no login required in the moment.</p></div>
-        <div class="case-block"><div class="case-label">Key Decisions</div><ul><li>A2P 10DLC compliance for reliable SMS delivery</li><li>Claude for natural language parsing (handles "mom would love those blue earrings from Nordstrom")</li><li>PWA for web access when browsing gift lists</li><li>Chrome extension for one-click capture while browsing</li></ul></div>
-        <div class="case-block"><div class="case-label">Outcomes</div><p>Family actively using for birthday and holiday planning. Captured 50+ gift ideas that would have been lost. Zero-friction input has transformed how we track gift inspiration.</p></div>
+        <img src="images/GiftStash.png" class="project-hero" onclick="openLightbox(this.src, 'GiftStash', 'Zero-Friction Gift Capture')" alt="GiftStash visualization">
+        <div class="case-block"><div class="case-label">The Friction</div><p>Gift ideas strike at random—overhearing "I've been wanting that book," spotting something perfect while browsing. By the time birthdays arrive, those ideas are gone. Every gift app requires opening, logging in, navigating. That friction kills capture.</p></div>
+        <div class="case-block"><div class="case-label">The Insight</div><p>The fastest input device is already in your hand. Texting is instant, universal, and requires zero context switching. If capturing a gift idea took the same effort as texting a friend, you'd never lose another one.</p></div>
+        <div class="case-block"><div class="case-label">The Solution</div><ul><li><strong>SMS-first capture:</strong> Text "mom would love those blue earrings from Nordstrom" → Claude parses recipient, item, and source automatically</li><li><strong>Multi-channel access:</strong> PWA for browsing lists, Chrome extension for one-click web capture</li><li><strong>A2P 10DLC compliance</strong> for carrier-grade SMS delivery</li><li><strong>AI-generated avatars</strong> make family profiles feel personal and fun</li></ul></div>
+        <div class="case-block"><div class="case-label">The Outcome</div><p>50+ gift ideas captured that would have been lost. Family actively uses it for birthdays and holidays. The insight: meeting users where they already are (SMS) beats building a better app.</p></div>
         <div class="case-block full-width">
           <div class="case-label">AI-Generated Assets</div>
           <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.75rem;">Custom avatars and illustrations created with Gemini for user profiles and marketing.</p>
@@ -189,66 +179,88 @@
             <img src="images/giftstash/GS_Sharing_Familyoncouch.png" class="project-thumb" onclick="openLightbox(this.src, 'Family Sharing Feature', 'GiftStash · Gemini')" alt="Illustration">
           </div>
         </div>
-        <div class="case-block full-width"><div class="case-label">Tech Stack</div><div class="tech-stack"><span class="tech-tag">Twilio</span><span class="tech-tag">Claude API</span><span class="tech-tag">Vercel</span><span class="tech-tag">React</span><span class="tech-tag">PWA</span><span class="tech-tag">Chrome Extension</span><span class="tech-tag">Gemini (Images)</span></div></div>
+        <div class="case-block full-width"><div class="case-label">Tech Stack</div><div class="tech-stack"><span class="tech-tag">Twilio SMS</span><span class="tech-tag">Claude API</span><span class="tech-tag">Supabase</span><span class="tech-tag">Next.js</span><span class="tech-tag">PWA</span><span class="tech-tag">Chrome Extension</span><span class="tech-tag">Gemini</span></div></div>
       </div></div>
     </article>
 
-    <!-- School District Dashboard -->
+    <!-- Focus Hub -->
     <article class="project">
       <div class="project-header" onclick="toggleProject(this)">
-        <div class="project-meta"><span class="project-category">Data Integration</span><h3 class="project-title">School District Dashboard</h3><p class="project-tagline">Unified view of multiple schools' calendars, events, and communications</p></div>
+        <div class="project-meta"><span class="project-category">Platform Integration</span><h3 class="project-title">Focus Hub</h3><p class="project-tagline">Productivity sidekick that connects your tools and holds you accountable</p></div>
         <div class="project-toggle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div>
       </div>
       <div class="project-content"><div class="case-study">
-        <div class="case-block"><div class="case-label">The Problem</div><p>With three kids across multiple schools, information comes from dozens of sources: emails, apps, websites, paper handouts. Critical dates get missed.</p></div>
-        <div class="case-block"><div class="case-label">The Approach</div><p>Aggregate and normalize data from multiple school sources into a single dashboard with smart filtering by child, event type, and urgency.</p></div>
-        <div class="case-block"><div class="case-label">Key Decisions</div><ul><li>Email parsing for school newsletter extraction</li><li>Calendar aggregation across school platforms</li><li>Child-specific views for quick daily reference</li><li>Integration with family DAKboard display</li></ul></div>
-        <div class="case-block"><div class="case-label">Outcomes</div><p>Single source of truth for school logistics. Reduced "I didn't know about that" moments. Morning briefings now include personalized school updates.</p></div>
-        <div class="case-block full-width"><div class="case-label">Tech Stack</div><div class="tech-stack"><span class="tech-tag">Python</span><span class="tech-tag">Gmail API</span><span class="tech-tag">Calendar APIs</span><span class="tech-tag">React</span><span class="tech-tag">DAKboard</span></div></div>
+        <img src="images/Focus Hub V2.png" class="project-hero" onclick="openLightbox(this.src, 'Focus Hub', 'Productivity Sidekick')" alt="Focus Hub visualization">
+        <div class="case-block"><div class="case-label">The Friction</div><p>Mornings start by checking three apps: Calendar for time reality, Todoist for tasks, Gmail for fires. By the time you've context-switched through all of them, momentum is gone. And projects without due dates quietly slip because nothing screams at you about them.</p></div>
+        <div class="case-block"><div class="case-label">The Insight</div><p>Productivity tools fail when they're passive dashboards you glance at occasionally. What works is a partner you're in constant dialogue with—one that knows your calendar, your tasks, your priorities, and isn't afraid to call out when you're drifting.</p></div>
+        <div class="case-block"><div class="case-label">The Solution</div><ul><li><strong>Chat-first interface:</strong> Always-on sidekick, not another dashboard to check</li><li><strong>Big 3 commitments:</strong> Each morning, declare what WILL get done (not what could)</li><li><strong>Focus sessions:</strong> Tracked deep work with energy logging and interruption counts</li><li><strong>Smart email triage:</strong> Gmail integration with VIP detection, school sender recognition, AI urgency scoring</li><li><strong>Platform integration:</strong> Connects Todoist + Calendar + Gmail + shared Supabase with Family HQ</li><li><strong>Proactive accountability:</strong> "That's twice you've pushed the PRD. Want to break it into smaller pieces?"</li></ul></div>
+        <div class="case-block"><div class="case-label">The Outcome</div><p>Daily use for morning standups and focus tracking. Surfaced three slipping projects in the first week. The cross-platform integration means one conversation has full context of calendar, tasks, email, and weekly priorities.</p></div>
+        <div class="case-block full-width"><div class="case-label">Tech Stack</div><div class="tech-stack"><span class="tech-tag">Next.js</span><span class="tech-tag">Claude API</span><span class="tech-tag">Supabase</span><span class="tech-tag">Gmail API</span><span class="tech-tag">Todoist API</span><span class="tech-tag">NextAuth</span><span class="tech-tag">Vercel</span></div></div>
+        <div class="case-block full-width"><div class="case-label">Platform Synergy</div><p style="color: var(--text-secondary); font-size: 0.95rem;">Focus Hub shares infrastructure with Family HQ—same Supabase database, same calendar sync, same weekly priorities table. This means focus sessions can link to family calendar events, and priority progress is visible across both systems. <strong>One backend, multiple specialized interfaces.</strong></p></div>
       </div></div>
     </article>
 
-    <!-- Email Priority Inbox -->
+    <!-- Family HQ -->
     <article class="project">
       <div class="project-header" onclick="toggleProject(this)">
-        <div class="project-meta"><span class="project-category">AI Automation</span><h3 class="project-title">Email Priority Inbox</h3><p class="project-tagline">AI-powered email triage that surfaces what actually matters</p></div>
+        <div class="project-meta"><span class="project-category">Foundation System</span><h3 class="project-title">Family HQ</h3><p class="project-tagline">The data layer that powers everything else</p></div>
         <div class="project-toggle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div>
       </div>
       <div class="project-content"><div class="case-study">
-        <div class="case-block"><div class="case-label">The Problem</div><p>Email volume makes it impossible to distinguish urgent items from noise. Important messages from schools, family, or time-sensitive requests get buried.</p></div>
-        <div class="case-block"><div class="case-label">The Approach</div><p>AI-powered classification that understands personal context: who matters, what topics are urgent, and what can wait or be automated away entirely.</p></div>
-        <div class="case-block"><div class="case-label">Key Decisions</div><ul><li>Context-aware priority scoring (not just sender rules)</li><li>Integration with family calendar for deadline awareness</li><li>Digest generation for low-priority batches</li><li>Learning from manual overrides</li></ul></div>
-        <div class="case-block"><div class="case-label">Outcomes</div><p>Reduced email processing time significantly. Critical school communications now surfaced immediately. Marketing and low-priority items auto-sorted.</p></div>
-        <div class="case-block full-width"><div class="case-label">Tech Stack</div><div class="tech-stack"><span class="tech-tag">Claude API</span><span class="tech-tag">Gmail API</span><span class="tech-tag">Python</span><span class="tech-tag">Vercel</span></div></div>
+        <img src="images/Family Hub.png" class="project-hero" onclick="openLightbox(this.src, 'Family HQ', 'Foundation Data Layer')" alt="Family HQ visualization">
+        <div class="case-block"><div class="case-label">The Friction</div><p>Running a household with three kids means hundreds of recurring decisions, contacts, and schedules—scattered across texts, emails, different apps, and people's heads. Every "where's that info?" moment adds friction. Every missed detail adds stress.</p></div>
+        <div class="case-block"><div class="case-label">The Insight</div><p>Household operations need infrastructure, not just apps. A central data layer that other systems can read from and write to. Build the foundation first, then build specialized interfaces on top.</p></div>
+        <div class="case-block"><div class="case-label">The Solution</div><ul><li><strong>Supabase + Notion hybrid:</strong> Structured data in Supabase, documents and SOPs in Notion</li><li><strong>Relational model:</strong> Kids → activities → schedules → contacts all linked</li><li><strong>Calendar aggregation:</strong> Multiple school calendars synced to one cached source</li><li><strong>Weekly priorities:</strong> Shared table that Focus Hub reads for accountability</li><li><strong>API-first design:</strong> Every piece of data accessible to other systems</li></ul></div>
+        <div class="case-block"><div class="case-label">The Outcome</div><p>Single source of truth for family logistics. New babysitters find emergency contacts in seconds. But more importantly: this became the foundation that Focus Hub, Morning Rundown, and Email Priority all build on. <strong>One data layer, multiple specialized interfaces.</strong></p></div>
+        <div class="case-block full-width"><div class="case-label">Tech Stack</div><div class="tech-stack"><span class="tech-tag">Supabase</span><span class="tech-tag">Notion</span><span class="tech-tag">Next.js</span><span class="tech-tag">Notion API</span><span class="tech-tag">iCal Sync</span><span class="tech-tag">Vercel</span></div></div>
+        <div class="case-block full-width"><div class="case-label">Platform Synergy</div><p style="color: var(--text-secondary); font-size: 0.95rem;">Family HQ's Supabase instance is shared with Focus Hub. Calendar events cached here feed into Morning Rundown. Weekly priorities defined here drive Focus Hub's accountability features. <strong>This is the infrastructure layer.</strong></p></div>
       </div></div>
     </article>
 
     <!-- Morning Rundown -->
     <article class="project">
       <div class="project-header" onclick="toggleProject(this)">
-        <div class="project-meta"><span class="project-category">Personal Productivity</span><h3 class="project-title">Morning Rundown</h3><p class="project-tagline">Daily focus assistant that synthesizes Calendar, Todoist, and Notion into one decision</p></div>
+        <div class="project-meta"><span class="project-category">Multi-System Synthesis</span><h3 class="project-title">Morning Rundown</h3><p class="project-tagline">Three apps, one briefing, 15 seconds to clarity</p></div>
         <div class="project-toggle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div>
       </div>
       <div class="project-content"><div class="case-study">
-        <div class="case-block"><div class="case-label">The Problem</div><p>Morning starts with checking three apps: Calendar for time reality, Todoist for tasks, Notion for projects. By the time you've context-switched through all three, you've lost momentum—and projects quietly slip because they don't have due dates screaming at you.</p></div>
-        <div class="case-block"><div class="case-label">The Approach</div><p>A single API endpoint that pulls from all three sources, sends to Claude with a custom system prompt, and returns a synthesized briefing. Works via Siri on any Apple device.</p></div>
-        <div class="case-block"><div class="case-label">Key Decisions</div><ul><li>Serverless deployment for cross-device access (Mac, iPhone, iPad)</li><li>Calendar passed from device (privacy), Todoist/Notion fetched server-side</li><li>"Last Worked" field in Notion flags projects stale after 7 days</li><li>Ends with a mode question: task day, builder day, or mix?</li></ul></div>
-        <div class="case-block"><div class="case-label">Outcomes</div><p>15 seconds from "Hey Siri" to knowing exactly what today should look like. Surfaced three slipping projects in the first week that would have otherwise drifted.</p></div>
-        <div class="case-block full-width"><div class="case-label">Tech Stack</div><div class="tech-stack"><span class="tech-tag">Claude API</span><span class="tech-tag">Todoist API</span><span class="tech-tag">Notion API</span><span class="tech-tag">Vercel</span><span class="tech-tag">Python</span><span class="tech-tag">Apple Shortcuts</span></div></div>
+        <img src="images/Morning Rundown V2.png" class="project-hero" onclick="openLightbox(this.src, 'Morning Rundown', 'Multi-System Synthesis')" alt="Morning Rundown visualization">
+        <div class="case-block"><div class="case-label">The Friction</div><p>Morning starts with three app checks: Calendar (what's my time reality?), Todoist (what's due?), Notion (what projects need attention?). By the time you've context-switched through all of them, you've lost 10 minutes and your momentum. Worse: projects without due dates quietly slip because nothing screams about them.</p></div>
+        <div class="case-block"><div class="case-label">The Insight</div><p>The question isn't "what's in each app?" It's "what should today look like?" That requires synthesizing information across systems, not just displaying it. And it should be accessible from anywhere—voice-first, device-agnostic.</p></div>
+        <div class="case-block"><div class="case-label">The Solution</div><ul><li><strong>Single API endpoint:</strong> Pulls from Calendar, Todoist, and Notion simultaneously</li><li><strong>Claude synthesis:</strong> Custom system prompt that prioritizes, flags stale projects, and recommends focus</li><li><strong>Siri integration:</strong> "Hey Siri, morning rundown" from any Apple device</li><li><strong>"Last Worked" tracking:</strong> Notion field flags projects untouched for 7+ days</li><li><strong>Mode recommendation:</strong> Task day, builder day, or mix—based on calendar shape</li></ul></div>
+        <div class="case-block"><div class="case-label">The Outcome</div><p>15 seconds from "Hey Siri" to knowing exactly what today should look like. Surfaced three slipping projects in week one. The synthesis is the value—no single app could provide this view.</p></div>
+        <div class="case-block full-width"><div class="case-label">Tech Stack</div><div class="tech-stack"><span class="tech-tag">Claude API</span><span class="tech-tag">Todoist API</span><span class="tech-tag">Notion API</span><span class="tech-tag">Apple Shortcuts</span><span class="tech-tag">Python</span><span class="tech-tag">Vercel</span></div></div>
+      </div></div>
+    </article>
+
+    <!-- Email Priority Inbox -->
+    <article class="project">
+      <div class="project-header" onclick="toggleProject(this)">
+        <div class="project-meta"><span class="project-category">AI Classification</span><h3 class="project-title">Email Priority Inbox</h3><p class="project-tagline">AI triage that knows who matters and what's actually urgent</p></div>
+        <div class="project-toggle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div>
+      </div>
+      <div class="project-content"><div class="case-study">
+        <img src="images/Inbox Priority.png" class="project-hero" onclick="openLightbox(this.src, 'Email Priority Inbox', 'AI Classification')" alt="Email Priority visualization">
+        <div class="case-block"><div class="case-label">The Friction</div><p>Email volume makes everything feel equally urgent. Important messages from schools, time-sensitive requests, and actual human correspondence get buried under newsletters, notifications, and automated noise. Filters help, but they're brittle and require constant maintenance.</p></div>
+        <div class="case-block"><div class="case-label">The Insight</div><p>Priority isn't about rules—it's about context. A message from a teacher matters more than a message from a vendor. An email mentioning "tomorrow" needs attention today. AI can understand these nuances in ways rule-based systems can't.</p></div>
+        <div class="case-block"><div class="case-label">The Solution</div><ul><li><strong>Context-aware classification:</strong> VIPs from Notion contacts, school domain detection, personal vs. automated</li><li><strong>AI urgency scoring:</strong> Claude analyzes content for time sensitivity and action items</li><li><strong>School sender recognition:</strong> District, principal, teacher, PTA—each handled appropriately</li><li><strong>Digest generation:</strong> Low-priority items batched into a single daily summary</li></ul></div>
+        <div class="case-block"><div class="case-label">The Outcome</div><p>Critical school communications now surface immediately. Marketing and low-priority items auto-sorted. Email processing time cut significantly. The classification logic is now shared with Focus Hub's email tools.</p></div>
+        <div class="case-block full-width"><div class="case-label">Tech Stack</div><div class="tech-stack"><span class="tech-tag">Claude API</span><span class="tech-tag">Gmail API</span><span class="tech-tag">Python</span><span class="tech-tag">Supabase</span><span class="tech-tag">Vercel</span></div></div>
       </div></div>
     </article>
 
     <!-- Study Buddy -->
     <article class="project">
       <div class="project-header" onclick="toggleProject(this)">
-        <div class="project-meta"><span class="project-category">AI Education</span><h3 class="project-title">Study Buddy</h3><p class="project-tagline">AI-powered flashcard app designed for how kids actually learn</p></div>
+        <div class="project-meta"><span class="project-category">AI Adaptation</span><h3 class="project-title">Study Buddy</h3><p class="project-tagline">Flashcards that adapt to how each kid actually learns</p></div>
         <div class="project-toggle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div>
       </div>
       <div class="project-content"><div class="case-study">
-        <div class="case-block"><div class="case-label">The Problem</div><p>Traditional flashcard apps are boring and don't adapt to individual learning patterns. Kids lose interest quickly, and parents can't easily create good study materials.</p></div>
-        <div class="case-block"><div class="case-label">The Approach</div><p>AI generates age-appropriate flashcards from any topic, adapts difficulty based on performance, and keeps engagement high with encouraging feedback.</p></div>
-        <div class="case-block"><div class="case-label">Key Decisions</div><ul><li>Prompt engineering for kid-friendly explanations</li><li>Spaced repetition algorithm for retention</li><li>Parent dashboard for progress tracking</li><li>Voice input option for younger kids</li></ul></div>
-        <div class="case-block"><div class="case-label">Outcomes</div><p>Used weekly for spelling, math facts, and science vocabulary. Kids actually ask to use it—the AI encouragement and adaptive difficulty keep them engaged.</p></div>
+        <img src="images/Study Buddy.png" class="project-hero" onclick="openLightbox(this.src, 'Study Buddy', 'AI-Adaptive Learning')" alt="Study Buddy visualization">
+        <div class="case-block"><div class="case-label">The Friction</div><p>Traditional flashcard apps are static, boring, and one-size-fits-all. Kids lose interest quickly. Parents spend time creating cards that don't adapt to what the child actually knows. And when a kid gets stuck, the app can't explain—just repeat.</p></div>
+        <div class="case-block"><div class="case-label">The Insight</div><p>Learning is personal. The same concept needs different explanations for different kids. And engagement matters as much as content—a bored kid isn't learning. AI can adapt both the difficulty and the encouragement in real-time.</p></div>
+        <div class="case-block"><div class="case-label">The Solution</div><ul><li><strong>AI-generated content:</strong> Create flashcards from any topic, age-appropriate automatically</li><li><strong>Adaptive difficulty:</strong> Performance tracking adjusts what comes next</li><li><strong>Encouraging feedback:</strong> Claude provides kid-friendly explanations when wrong</li><li><strong>Voice input:</strong> Younger kids can speak answers instead of typing</li><li><strong>Character mascot:</strong> CottleCub (25+ expressions) keeps it fun and engaging</li></ul></div>
+        <div class="case-block"><div class="case-label">The Outcome</div><p>Used weekly for spelling, math facts, and science vocabulary. Kids actually ask to use it. The AI encouragement and adaptive difficulty transformed study time from a chore into something they engage with.</p></div>
         <div class="case-block full-width">
           <div class="case-label">AI-Generated Mascot: CottleCub</div>
           <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.75rem;">Created a friendly bear mascot with 25+ expressions for different subjects, moods, and break activities.</p>
@@ -261,22 +273,23 @@
             <img src="images/studybuddy/CottleCub_You_Did_It.png" class="project-thumb" onclick="openLightbox(this.src, 'CottleCub Celebration', 'Study Buddy · Gemini')" alt="CottleCub">
           </div>
         </div>
-        <div class="case-block full-width"><div class="case-label">Tech Stack</div><div class="tech-stack"><span class="tech-tag">Claude API</span><span class="tech-tag">React</span><span class="tech-tag">Vercel</span><span class="tech-tag">Web Speech API</span><span class="tech-tag">Gemini (Images)</span></div></div>
+        <div class="case-block full-width"><div class="case-label">Tech Stack</div><div class="tech-stack"><span class="tech-tag">Claude API</span><span class="tech-tag">Next.js</span><span class="tech-tag">Supabase</span><span class="tech-tag">Web Speech API</span><span class="tech-tag">Gemini</span><span class="tech-tag">Vercel</span></div></div>
       </div></div>
     </article>
 
-    <!-- Family HQ -->
+    <!-- School District Dashboard -->
     <article class="project">
       <div class="project-header" onclick="toggleProject(this)">
-        <div class="project-meta"><span class="project-category">Operations System</span><h3 class="project-title">Family HQ</h3><p class="project-tagline">Notion-based command center for household operations</p></div>
+        <div class="project-meta"><span class="project-category">Data Aggregation</span><h3 class="project-title">School District Dashboard</h3><p class="project-tagline">Three kids, multiple schools, one unified view</p></div>
         <div class="project-toggle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div>
       </div>
       <div class="project-content"><div class="case-study">
-        <div class="case-block"><div class="case-label">The Problem</div><p>Running a household with three kids involves hundreds of recurring tasks, decisions, and information that lives in different people's heads or scattered systems.</p></div>
-        <div class="case-block"><div class="case-label">The Approach</div><p>Centralized Notion workspace that serves as the single source of truth for schedules, contacts, recurring tasks, kid info, vendor details, and household SOPs.</p></div>
-        <div class="case-block"><div class="case-label">Key Decisions</div><ul><li>Relational databases linking kids → activities → schedules → contacts</li><li>Template system for recurring events (birthday party planning, etc.)</li><li>Mobile-friendly views for quick access</li><li>Integration points for automation systems</li></ul></div>
-        <div class="case-block"><div class="case-label">Outcomes</div><p>Eliminated "where's that info?" moments. New babysitters can find emergency contacts in seconds. Household runs more smoothly with less mental overhead.</p></div>
-        <div class="case-block full-width"><div class="case-label">Tech Stack</div><div class="tech-stack"><span class="tech-tag">Notion</span><span class="tech-tag">Notion API</span><span class="tech-tag">Zapier</span><span class="tech-tag">Apple Shortcuts</span></div></div>
+        <img src="images/School District Dash.png" class="project-hero" onclick="openLightbox(this.src, 'School District Dashboard', 'Data Aggregation')" alt="School Dashboard visualization">
+        <div class="case-block"><div class="case-label">The Friction</div><p>Three kids across multiple schools means information comes from a dozen sources: school emails, parent apps, websites, paper handouts, text chains. Critical dates get missed because there's no single place to see what's coming.</p></div>
+        <div class="case-block"><div class="case-label">The Insight</div><p>Schools won't consolidate their communication—that's not happening. But we can aggregate on our end. Pull from every source, normalize the data, and present it in a way that answers the only question that matters: "What do I need to know about today?"</p></div>
+        <div class="case-block"><div class="case-label">The Solution</div><ul><li><strong>Email parsing:</strong> Extract events and deadlines from school newsletters</li><li><strong>Calendar aggregation:</strong> Multiple school platforms synced to one source</li><li><strong>Child-specific views:</strong> Filter by kid for quick daily reference</li><li><strong>DAKboard integration:</strong> Ambient display in kitchen shows today's schedule</li></ul></div>
+        <div class="case-block"><div class="case-label">The Outcome</div><p>Single source of truth for school logistics. "I didn't know about that" moments dramatically reduced. The calendar sync feeds into Family HQ, which feeds into Morning Rundown. <strong>Data flows downstream.</strong></p></div>
+        <div class="case-block full-width"><div class="case-label">Tech Stack</div><div class="tech-stack"><span class="tech-tag">Python</span><span class="tech-tag">Gmail API</span><span class="tech-tag">iCal</span><span class="tech-tag">Supabase</span><span class="tech-tag">DAKboard</span></div></div>
       </div></div>
     </article>
   </div></section>
@@ -382,34 +395,34 @@
   <section class="about" id="about"><div class="container"><div class="about-grid">
     <div>
       <div class="about-label">About</div>
-      <h2>Building with intention</h2>
+      <h2>The approach matters</h2>
       <div class="about-text">
-        <p>I approach automation and AI the same way I approach any engineering problem: start with a real pain point, understand the constraints, and build something that works reliably in the real world.</p>
-        <p>My background in measurement and analytics taught me to focus on outcomes, not just outputs. Every system I build has clear success criteria and gets iterated based on actual usage.</p>
-        <p>Currently exploring what's possible when you combine modern AI capabilities with thoughtful systems design for personal and family use cases.</p>
+        <p>Every project above started the same way: noticing friction that shouldn't exist. Not "what would be cool to build" but "why does this still suck?"</p>
+        <p>My 15 years in measurement and analytics taught me to focus on outcomes, not outputs. A system isn't done when it's built—it's done when it changes behavior. Every project here gets iterated based on actual usage.</p>
+        <p>The pattern that emerged: <strong>platforms work better together than alone.</strong> Family HQ became the data layer. Focus Hub reads from it. Morning Rundown synthesizes across systems. Email Priority's classification logic gets reused. Building modular, API-first means each new tool makes the others more valuable.</p>
       </div>
     </div>
     <div>
       <ul class="expertise-list">
         <li class="expertise-item">
-          <div class="expertise-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg></div>
-          <div class="expertise-content"><h4>AI Integration</h4><p>Claude API, prompt engineering, context management, multi-model architectures</p></div>
+          <div class="expertise-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></div>
+          <div class="expertise-content"><h4>Problem Identification</h4><p>Finding the friction that matters, understanding why it persists, defining what "solved" looks like</p></div>
         </li>
         <li class="expertise-item">
-          <div class="expertise-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg></div>
-          <div class="expertise-content"><h4>Automation Systems</h4><p>Apple Shortcuts, Zapier, custom integrations, event-driven workflows</p></div>
+          <div class="expertise-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg></div>
+          <div class="expertise-content"><h4>AI Integration</h4><p>Claude API, prompt engineering, tool use, multi-model architectures, agentic loops</p></div>
+        </li>
+        <li class="expertise-item">
+          <div class="expertise-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></div>
+          <div class="expertise-content"><h4>Platform Integration</h4><p>Connecting APIs (Gmail, Todoist, Notion, Twilio), shared data layers, systems that talk to each other</p></div>
         </li>
         <li class="expertise-item">
           <div class="expertise-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg></div>
-          <div class="expertise-content"><h4>Full-Stack Development</h4><p>React, Python, Vercel, API design, database architecture</p></div>
+          <div class="expertise-content"><h4>Full-Stack Development</h4><p>Next.js, Python, Supabase, Vercel, API design, database architecture</p></div>
         </li>
         <li class="expertise-item">
-          <div class="expertise-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
-          <div class="expertise-content"><h4>Voice & Conversational AI</h4><p>ElevenLabs, Deepgram, Picovoice, conversational design</p></div>
-        </li>
-        <li class="expertise-item">
-          <div class="expertise-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></div>
-          <div class="expertise-content"><h4>AI Image Generation</h4><p>Gemini, prompt crafting for consistent character design and brand assets</p></div>
+          <div class="expertise-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></div>
+          <div class="expertise-content"><h4>Outcome-Driven Iteration</h4><p>Shipping fast, measuring usage, iterating based on what actually happens, not assumptions</p></div>
         </li>
       </ul>
     </div>
@@ -420,7 +433,7 @@
       <a href="mailto:maxbjaffe@gmail.com">Email</a>
       
     </div>
-    <p class="footer-note">Built with intention. Shipped with Claude. Illustrated with Gemini.</p>
+    <p class="footer-note">Problems identified. Solutions shipped. Outcomes measured.</p>
   </div></div></footer>
 
   <!-- Lightbox -->
