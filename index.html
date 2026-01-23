@@ -81,6 +81,12 @@
     /* Project Hero Image */
     .project-hero { width: 100%; max-height: 400px; object-fit: cover; border-radius: 0.75rem; margin-bottom: 2rem; border: 1px solid var(--border); cursor: pointer; transition: transform 0.3s, border-color 0.3s; }
     .project-hero:hover { border-color: var(--accent); transform: scale(1.01); }
+
+    /* Universe Overview */
+    .universe { padding: 4rem 0; border-bottom: 1px solid var(--border); }
+    .universe-visual { width: 100%; max-width: 900px; margin: 0 auto; border-radius: 1rem; border: 1px solid var(--border); cursor: pointer; transition: transform 0.3s, border-color 0.3s; }
+    .universe-visual:hover { border-color: var(--accent); transform: scale(1.01); }
+    .universe-caption { text-align: center; margin-top: 1.5rem; color: var(--text-secondary); font-size: 1rem; max-width: 600px; margin-left: auto; margin-right: auto; }
     
     /* Project Images */
     .project-images { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1rem; }
@@ -152,6 +158,11 @@
     <p class="hero-description">I find real problems, understand why they persist, then build targeted solutions that actually get used. Every project here started with friction I couldn't ignore—and ended with something that changed daily behavior.</p>
     <div class="hero-stats"><div class="stat"><span class="stat-number">7</span><span class="stat-label">Production Systems</span></div><div class="stat"><span class="stat-number">15+</span><span class="stat-label">API Integrations</span></div><div class="stat"><span class="stat-number">Daily</span><span class="stat-label">Active Usage</span></div></div>
   </div></div></section>
+
+  <section class="universe"><div class="container">
+    <img src="images/Maxs Project Universe visual v2.png" class="universe-visual" onclick="openLightbox(this.src, 'The Project Universe', 'How the systems connect')" alt="Overview of connected project systems">
+    <p class="universe-caption">Every system talks to every other system. Shared data layers, reusable classification logic, and APIs that compose. Build once, leverage everywhere.</p>
+  </div></section>
 
   <section class="projects" id="projects"><div class="container">
     <div class="section-header"><div class="section-label">Friction → Solution → Outcome</div><h2 class="section-title">What I've Built</h2></div>
