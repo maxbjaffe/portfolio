@@ -3,7 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Max Jaffe.ai | AI & Automation Portfolio</title>
+  <title>Max Jaffe | Data, Analytics & AI — Founder of Jaffelytics</title>
+  <meta name="description" content="15 years in programmatic advertising at The Trade Desk and WPP. Now building AI-powered analytics and SEO solutions for local businesses in Westchester and Connecticut through Jaffelytics.">
+  <meta property="og:title" content="Max Jaffe | Data, Analytics & AI">
+  <meta property="og:description" content="15 years in programmatic advertising at The Trade Desk and WPP. Now building AI-powered analytics and SEO solutions for local businesses in Westchester and Connecticut through Jaffelytics.">
+  <meta property="og:url" content="https://maxjaffe.ai">
+  <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -51,10 +56,51 @@
     .stat { display: flex; flex-direction: column; }
     .stat-number { font-family: var(--font-display); font-size: 2.5rem; font-weight: 700; color: var(--accent); }
     .stat-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .hero-ctas { display: flex; gap: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+    .btn-primary { font-family: var(--font-display); font-size: 1rem; font-weight: 600; padding: 1rem 2rem; background: var(--gradient-warm); color: var(--bg-primary); border-radius: 0.5rem; text-decoration: none; transition: all 0.2s; display: inline-block; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3); }
+    .btn-secondary { font-family: var(--font-display); font-size: 1rem; font-weight: 500; padding: 1rem 2rem; background: transparent; color: var(--text-secondary); border: 1px solid var(--border-light); border-radius: 0.5rem; text-decoration: none; transition: all 0.2s; display: inline-block; }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Work With Me Section */
+    .work-with-me { padding: 6rem 0; background: #0f172a; border-top: 1px solid rgba(245, 158, 11, 0.2); border-bottom: 1px solid rgba(245, 158, 11, 0.2); }
+    .work-with-me .section-label { color: var(--accent); }
+    .work-with-me .section-title { color: #f8fafc; margin-bottom: 3rem; }
+    .wwm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .wwm-copy { color: #94a3b8; font-size: 1.05rem; line-height: 1.8; }
+    .wwm-copy p { margin-bottom: 1.25rem; }
+    .wwm-photo { display: flex; flex-direction: column; align-items: center; margin-top: 2.5rem; }
+    .wwm-photo-frame { width: 200px; height: 200px; border-radius: 50%; background: #334155; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-family: var(--font-display); font-size: 0.9rem; overflow: hidden; border: 3px solid rgba(245, 158, 11, 0.3); }
+    .wwm-photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+    .wwm-photo-name { font-family: var(--font-display); font-weight: 600; color: #f8fafc; margin-top: 1rem; font-size: 1.1rem; }
+    .wwm-photo-role { font-family: var(--font-mono); font-size: 0.8rem; color: #64748b; margin-top: 0.25rem; }
+    .wwm-services { background: #1e293b; border: 1px solid #334155; border-radius: 1rem; padding: 2.5rem; }
+    .wwm-services h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: #f8fafc; margin-bottom: 2rem; }
+    .service-item { display: flex; gap: 1rem; margin-bottom: 1.75rem; align-items: flex-start; }
+    .service-icon { font-size: 1.5rem; flex-shrink: 0; line-height: 1; margin-top: 0.1rem; }
+    .service-text h4 { font-family: var(--font-display); font-size: 1rem; font-weight: 600; color: #e2e8f0; margin-bottom: 0.25rem; }
+    .service-text p { font-size: 0.9rem; color: #94a3b8; margin: 0; line-height: 1.5; }
+    .wwm-cta { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #334155; }
+    .wwm-cta .btn-primary { display: block; text-align: center; font-size: 1.1rem; padding: 1.1rem 2rem; }
+    .wwm-cta-secondary { display: block; text-align: center; margin-top: 1rem; font-family: var(--font-display); font-size: 0.9rem; color: #94a3b8; }
+    .wwm-cta-secondary a { color: var(--accent); text-decoration: none; }
+    .wwm-cta-secondary a:hover { text-decoration: underline; }
+
+    /* Active Badge for Jaffelytics card */
+    .project-badge { font-family: var(--font-mono); font-size: 0.7rem; color: #22c55e; display: flex; align-items: center; gap: 0.4rem; position: absolute; top: 2rem; right: 2.5rem; }
+    .project-badge::before { content: ''; width: 6px; height: 6px; background: #22c55e; border-radius: 50%; }
+    .project-header { position: relative; }
+
+    /* About photo placeholder */
+    .about-photo { width: 200px; height: 200px; border-radius: 50%; background: #334155; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-family: var(--font-display); font-size: 0.9rem; overflow: hidden; border: 3px solid rgba(245, 158, 11, 0.3); flex-shrink: 0; }
+    .about-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .about-header-with-photo { display: flex; gap: 2rem; align-items: center; margin-bottom: 1.5rem; }
+
     .projects { padding: 8rem 0; }
     .section-header { margin-bottom: 4rem; }
     .section-label { font-family: var(--font-mono); font-size: 0.875rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
     .section-title { font-family: var(--font-display); font-size: 2.5rem; font-weight: 600; }
+    .section-intro { color: var(--text-secondary); font-size: 1.1rem; max-width: 700px; margin-top: 1rem; }
     .project { background: var(--bg-card); border: 1px solid var(--border); border-radius: 1rem; margin-bottom: 2rem; overflow: hidden; transition: all 0.3s ease; }
     .project:hover { background: var(--bg-card-hover); border-color: var(--border-light); transform: translateY(-2px); }
     .project-header { padding: 2rem 2.5rem; cursor: pointer; display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: start; }
@@ -126,7 +172,7 @@
     .about { padding: 8rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .about-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: start; }
     .about-label { font-family: var(--font-mono); font-size: 0.875rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
-    .about h2 { font-family: var(--font-display); font-size: 2rem; font-weight: 600; margin-bottom: 1.5rem; }
+    .about h2 { font-family: var(--font-display); font-size: 2rem; font-weight: 600; margin-bottom: 0; }
     .about-text p { color: var(--text-secondary); margin-bottom: 1.25rem; }
     .about-text p:last-child { margin-bottom: 0; }
     .expertise-list { list-style: none; display: grid; gap: 1rem; }
@@ -139,6 +185,7 @@
     .contact-links { display: flex; gap: 1.5rem; }
     .contact-links a { font-family: var(--font-display); font-size: 0.875rem; color: var(--text-secondary); text-decoration: none; padding: 0.75rem 1.5rem; border: 1px solid var(--border); border-radius: 2rem; transition: all 0.2s; }
     .contact-links a:hover { border-color: var(--accent); color: var(--accent); }
+    .contact-intro { color: var(--text-secondary); font-size: 1.1rem; max-width: 500px; text-align: center; margin-bottom: 0.5rem; }
     .footer-note { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); }
     
     /* Gallery Filters */
@@ -146,16 +193,20 @@
     .filter-btn { font-family: var(--font-mono); font-size: 0.75rem; padding: 0.5rem 1rem; background: transparent; border: 1px solid var(--border); color: var(--text-secondary); border-radius: 2rem; cursor: pointer; transition: all 0.2s; }
     .filter-btn:hover, .filter-btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg-primary); }
     
-    @media (max-width: 768px) { .case-study { grid-template-columns: 1fr; } .about-grid { grid-template-columns: 1fr; gap: 2rem; } .hero-stats { flex-wrap: wrap; gap: 2rem; } .nav-links { display: none; } .project-header { grid-template-columns: 1fr auto; } .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); } }
+    @media (max-width: 768px) { .case-study { grid-template-columns: 1fr; } .about-grid { grid-template-columns: 1fr; gap: 2rem; } .hero-stats { flex-wrap: wrap; gap: 2rem; } .nav-links { display: none; } .project-header { grid-template-columns: 1fr auto; } .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); } .wwm-grid { grid-template-columns: 1fr; gap: 2.5rem; } .hero-ctas { flex-direction: column; } .hero-ctas .btn-primary, .hero-ctas .btn-secondary { text-align: center; } .about-header-with-photo { flex-direction: column; align-items: flex-start; } .about-photo { width: 120px; height: 120px; } .wwm-photo-frame { width: 150px; height: 150px; } .project-badge { position: static; margin-top: 0.5rem; } .work-with-me .section-title { font-size: 1.75rem; } }
   </style>
 </head>
 <body>
-  <nav><div class="container"><a href="#" class="logo"><span class="logo-prompt">>_</span> Max Jaffe.ai<span class="logo-cursor"></span></a><ul class="nav-links"><li><a href="#projects">Work</a></li><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li></ul></div></nav>
+  <nav><div class="container"><a href="#" class="logo"><span class="logo-prompt">>_</span> Max Jaffe.ai<span class="logo-cursor"></span></a><ul class="nav-links"><li><a href="#work-with-me">Work With Me</a></li><li><a href="#projects">Projects</a></li><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li></ul></div></nav>
 
   <section class="hero"><div class="container"><div class="hero-content">
-    <div class="hero-label">Problem Solver & Builder</div>
-    <h1>Identify the friction. <span class="highlight">Build the fix.</span></h1>
-    <p class="hero-description">I find real problems, understand why they persist, then build targeted solutions that actually get used. Every project here started with friction I couldn't ignore—and ended with something that changed daily behavior.</p>
+    <div class="hero-label">Data · Analytics · AI & Automation</div>
+    <h1>I find the problems your competitors <span class="highlight">haven't solved yet.</span></h1>
+    <p class="hero-description">15 years in programmatic advertising taught me to follow the data until the answer is uncomfortable. Now I build AI-powered solutions for local businesses — and the systems below prove the approach works.</p>
+    <div class="hero-ctas">
+      <a href="https://jaffelytics.com" target="_blank" rel="noopener noreferrer" class="btn-primary">See What Jaffelytics Can Do For Your Business →</a>
+      <a href="#projects" class="btn-secondary">View My Projects ↓</a>
+    </div>
     <div class="hero-stats"><div class="stat"><span class="stat-number">7</span><span class="stat-label">Production Systems</span></div><div class="stat"><span class="stat-number">15+</span><span class="stat-label">API Integrations</span></div><div class="stat"><span class="stat-number">Daily</span><span class="stat-label">Active Usage</span></div></div>
   </div></div></section>
 
@@ -164,8 +215,82 @@
     <p class="universe-caption">Every system talks to every other system. Shared data layers, reusable classification logic, and APIs that compose. Build once, leverage everywhere.</p>
   </div></section>
 
+  <!-- Work With Me -->
+  <section class="work-with-me" id="work-with-me"><div class="container">
+    <div class="section-header">
+      <div class="section-label">For Local Businesses in Westchester & Connecticut</div>
+      <h2 class="section-title">Your competitors have data teams. You have me.</h2>
+    </div>
+    <div class="wwm-grid">
+      <div>
+        <div class="wwm-copy">
+          <p>I spent 15 years in the most data-intensive corner of marketing — programmatic advertising at companies like The Trade Desk and WPP's GroupM. The analytics and AI tools those organizations use daily? Most local businesses have never had access to them.</p>
+          <p>I built the systems on this page for my own family and home. Every one of them runs in production, daily. That same approach — find the real problem, build the right solution, measure what actually changes — is what I bring to local businesses.</p>
+          <p>I start with SEO because it's where I find the most untapped opportunity. But the goal is always the same: give you an unfair advantage over competitors who are still guessing.</p>
+        </div>
+        <div class="wwm-photo">
+          <div class="wwm-photo-frame">
+            <img src="/images/max-jaffe.jpg" alt="Max Jaffe" onerror="this.style.display='none'; this.parentElement.textContent='Photo coming soon';">
+          </div>
+          <div class="wwm-photo-name">Max Jaffe</div>
+          <div class="wwm-photo-role">Founder, Jaffelytics</div>
+        </div>
+      </div>
+      <div class="wwm-services">
+        <h3>What I can help with</h3>
+        <div class="service-item">
+          <span class="service-icon">&#128269;</span>
+          <div class="service-text"><h4>SEO & Search Visibility</h4><p>Full 13-dimension audit with health scoring and action plan</p></div>
+        </div>
+        <div class="service-item">
+          <span class="service-icon">&#129302;</span>
+          <div class="service-text"><h4>AI Search Visibility (GEO)</h4><p>Is ChatGPT, Perplexity, or Google AI recommending your business?</p></div>
+        </div>
+        <div class="service-item">
+          <span class="service-icon">&#128202;</span>
+          <div class="service-text"><h4>Competitive Intelligence</h4><p>See exactly where competitors outrank you and why</p></div>
+        </div>
+        <div class="service-item">
+          <span class="service-icon">&#128200;</span>
+          <div class="service-text"><h4>Analytics & Reporting Dashboards</h4><p>Data that tells you what to do, not just what happened</p></div>
+        </div>
+        <div class="service-item">
+          <span class="service-icon">&#9881;&#65039;</span>
+          <div class="service-text"><h4>Automation & Workflow Solutions</h4><p>Eliminate the manual work that's eating your team's time</p></div>
+        </div>
+        <div class="service-item">
+          <span class="service-icon">&#127919;</span>
+          <div class="service-text"><h4>Custom Data Projects</h4><p>If you have a data problem, I probably have a solution</p></div>
+        </div>
+        <div class="wwm-cta">
+          <a href="https://jaffelytics.com/#cta" target="_blank" rel="noopener noreferrer" class="btn-primary">Request a Free SEO Audit →</a>
+          <p class="wwm-cta-secondary">Or reach out directly → <a href="mailto:maxbjaffe@gmail.com">maxbjaffe@gmail.com</a></p>
+        </div>
+      </div>
+    </div>
+  </div></section>
+
   <section class="projects" id="projects"><div class="container">
-    <div class="section-header"><div class="section-label">Friction → Solution → Outcome</div><h2 class="section-title">What I've Built</h2></div>
+    <div class="section-header"><div class="section-label">Friction → Solution → Outcome</div><h2 class="section-title">What I've Built — Starting With My Own Problems</h2><p class="section-intro">Every system below started as friction in my own life. I built the solution, used it daily, and iterated based on real usage — not assumptions. That's the same approach I bring to client work. The problems just change.</p></div>
+
+    <!-- Jaffelytics -->
+    <article class="project">
+      <div class="project-header" onclick="toggleProject(this)">
+        <div class="project-meta"><span class="project-category">Live Platform</span><h3 class="project-title">Jaffelytics</h3><p class="project-tagline">SEO audits, health scores, and AI search visibility for local businesses</p></div>
+        <span class="project-badge">Active Client Work</span>
+        <div class="project-toggle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div>
+      </div>
+      <div class="project-content"><div class="case-study">
+        <div class="case-block"><div class="case-label">The Friction</div><p>Local businesses in Westchester and Connecticut are competing against national chains and regional players who have entire analytics and SEO teams. Most SMBs get a generic checklist from a junior freelancer — if they get anything at all.</p></div>
+        <div class="case-block"><div class="case-label">The Insight</div><p>The same data infrastructure that major advertisers use to dominate search can be made accessible, automated, and actionable for a dental practice or a boutique law firm. You don't need a team. You need the right tools and someone who knows how to use them.</p></div>
+        <div class="case-block full-width"><div class="case-label">The Solution</div><ul><li>13-dimension live SEO audit running in under 30 seconds</li><li>Weighted health scores (0-100) with historical trend tracking</li><li>AI search visibility scoring — measuring GEO performance before most businesses know what GEO is</li><li>Co-branded PDF reports built for non-technical business owners</li><li>Automated competitive gap analysis</li><li>Direct outreach to local businesses across Westchester & CT</li></ul></div>
+        <div class="case-block full-width"><div class="case-label">The Outcome</div><p>A platform built to turn a one-time audit into an ongoing growth conversation. The goal isn't to sell a report — it's to become the data partner that local businesses didn't know they needed.</p></div>
+        <div class="case-block full-width" style="display: flex; align-items: center; justify-content: center;">
+          <a href="https://jaffelytics.com" target="_blank" rel="noopener noreferrer" class="btn-primary" style="margin: 0;">Visit Jaffelytics.com →</a>
+        </div>
+        <div class="case-block full-width"><div class="case-label">Tech Stack</div><div class="tech-stack"><span class="tech-tag">Next.js</span><span class="tech-tag">Supabase</span><span class="tech-tag">Claude API</span><span class="tech-tag">Vercel</span><span class="tech-tag">PageSpeed API</span><span class="tech-tag">Google Search Console</span><span class="tech-tag">SEMrush</span><span class="tech-tag">PDF Generation</span></div></div>
+      </div></div>
+    </article>
 
     <!-- GiftStash -->
     <article class="project">
@@ -406,11 +531,17 @@
   <section class="about" id="about"><div class="container"><div class="about-grid">
     <div>
       <div class="about-label">About</div>
-      <h2>The approach matters</h2>
+      <div class="about-header-with-photo">
+        <div class="about-photo">
+          <img src="/images/max-jaffe.jpg" alt="Max Jaffe" onerror="this.style.display='none'; this.parentElement.textContent='Photo coming soon';">
+        </div>
+        <h2>The approach matters</h2>
+      </div>
       <div class="about-text">
         <p>Every project above started the same way: noticing friction that shouldn't exist. Not "what would be cool to build" but "why does this still suck?"</p>
         <p>My 15 years in measurement and analytics taught me to focus on outcomes, not outputs. A system isn't done when it's built—it's done when it changes behavior. Every project here gets iterated based on actual usage.</p>
         <p>The pattern that emerged: <strong>platforms work better together than alone.</strong> Family HQ became the data layer. Focus Hub reads from it. Morning Rundown synthesizes across systems. Email Priority's classification logic gets reused. Building modular, API-first means each new tool makes the others more valuable.</p>
+        <p>I'm based in Bronxville, NY. Outside of client work, I spend a lot of time thinking about the gap between the data tools that large organizations take for granted and what local businesses actually have access to. Jaffelytics is my attempt to close that gap — starting with search visibility, expanding into whatever problem matters most to the business in front of me.</p>
       </div>
     </div>
     <div>
@@ -440,11 +571,13 @@
   </div></div></section>
 
   <footer id="contact"><div class="container"><div class="footer-content">
+    <p class="contact-intro">Have a data problem or want to see what a Jaffelytics audit looks like for your business? Let's talk.</p>
     <div class="contact-links">
       <a href="mailto:maxbjaffe@gmail.com">Email</a>
-      
+      <a href="https://jaffelytics.com/#cta" target="_blank" rel="noopener noreferrer">Request a Free Audit at Jaffelytics →</a>
     </div>
     <p class="footer-note">Problems identified. Solutions shipped. Outcomes measured.</p>
+    <p class="footer-note">Serving Westchester & Connecticut through <a href="https://jaffelytics.com" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: none;">Jaffelytics.com →</a></p>
   </div></div></footer>
 
   <!-- Lightbox -->
