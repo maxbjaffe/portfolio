@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Max Jaffe — The Lab</title>
+  <meta name="description" content="Technical portfolio — agent architecture, project ecosystem, and system design across Max Jaffe's AI-powered app portfolio.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="/portfolio-data.js"></script>
+  <style>
+    :root {
+      --bg: #0a0a0b;
+      --bg2: #111113;
+      --bg3: #18181b;
+      --bg4: #1f1f23;
+      --text: #fafafa;
+      --text2: #a1a1aa;
+      --text3: #71717a;
+      --accent: #f59e0b;
+      --accent-dim: rgba(245,158,11,0.12);
+      --border: #27272a;
+      --border2: #3f3f46;
+      --green: #10b981;
+      --green-dim: rgba(16,185,129,0.12);
+      --blue: #3b82f6;
+      --blue-dim: rgba(59,130,246,0.12);
+      --red: #ef4444;
+      --red-dim: rgba(239,68,68,0.12);
+      --purple: #8b5cf6;
+      --purple-dim: rgba(139,92,246,0.12);
+      --teal: #14b8a6;
+      --teal-dim: rgba(20,184,166,0.12);
+      --mono: 'JetBrains Mono', monospace;
+      --sans: 'Space Grotesk', sans-serif;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:var(--sans); background:var(--bg); color:var(--text); line-height:1.6; font-size:15px; }
+
+    nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:1rem 2rem; background:rgba(10,10,11,0.85); backdrop-filter:blur(16px); border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
+    .logo { font-family:var(--mono); font-size:0.9rem; color:var(--text); text-decoration:none; display:flex; align-items:center; gap:0.4rem; }
+    .logo-prompt { color:var(--accent); }
+    .nav-links { display:flex; gap:1.5rem; list-style:none; }
+    .nav-links a { font-size:0.8rem; color:var(--text2); text-decoration:none; transition:color 0.15s; }
+    .nav-links a:hover { color:var(--accent); }
+    .back-link { font-size:0.8rem; color:var(--text3); text-decoration:none; display:flex; align-items:center; gap:0.4rem; transition:color 0.15s; }
+    .back-link:hover { color:var(--accent); }
+
+    .page-hero { padding: 8rem 2rem 4rem; max-width:1100px; margin:0 auto; }
+    .hero-label { font-family:var(--mono); font-size:0.75rem; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:1rem; display:flex; align-items:center; gap:0.6rem; }
+    .hero-label::before { content:''; width:1.5rem; height:1px; background:var(--accent); }
+    .page-hero h1 { font-size:clamp(2rem,5vw,3.5rem); font-weight:700; line-height:1.1; margin-bottom:1rem; }
+    .page-hero p { color:var(--text2); font-size:1rem; max-width:600px; }
+
+    .tabs { display:flex; gap:0; border-bottom:1px solid var(--border); max-width:1100px; margin:0 auto; padding:0 2rem; }
+    .tab { font-family:var(--mono); font-size:0.75rem; padding:0.75rem 1.25rem; color:var(--text3); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-1px; transition:all 0.15s; text-transform:uppercase; letter-spacing:0.06em; }
+    .tab:hover { color:var(--text2); }
+    .tab.active { color:var(--accent); border-bottom-color:var(--accent); }
+
+    .pane { display:none; max-width:1100px; margin:0 auto; padding:2.5rem 2rem 6rem; }
+    .pane.active { display:block; }
+
+    .section-label { font-family:var(--mono); font-size:0.7rem; color:var(--text3); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.75rem; }
+    .mono-chip { font-family:var(--mono); font-size:0.7rem; padding:0.2rem 0.6rem; border-radius:4px; background:var(--bg3); border:1px solid var(--border); color:var(--text3); display:inline-block; }
+
+    .app-grid { display:grid; gap:1px; background:var(--border); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-bottom:1.5rem; }
+    .app-card { background:var(--bg2); padding:1.25rem 1.5rem; cursor:pointer; transition:background 0.15s; }
+    .app-card:hover { background:var(--bg3); }
+    .app-card.active { background:var(--bg3); border-left:2px solid var(--accent); }
+    .app-header { display:flex; align-items:center; gap:0.75rem; margin-bottom:0.5rem; }
+    .app-icon { width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .app-name { font-size:0.95rem; font-weight:600; }
+    .app-url { font-family:var(--mono); font-size:0.7rem; color:var(--text3); margin-top:2px; }
+    .role-badge { font-size:0.65rem; font-weight:600; padding:0.15rem 0.5rem; border-radius:10px; text-transform:uppercase; letter-spacing:0.05em; margin-left:auto; }
+    .badge-danger { background:var(--red-dim); color:var(--red); border:1px solid rgba(239,68,68,0.25); }
+    .badge-info { background:var(--blue-dim); color:var(--blue); border:1px solid rgba(59,130,246,0.25); }
+    .badge-success { background:var(--green-dim); color:var(--green); border:1px solid rgba(16,185,129,0.25); }
+    .badge-warning { background:var(--accent-dim); color:var(--accent); border:1px solid rgba(245,158,11,0.25); }
+    .badge-amber { background:var(--accent-dim); color:var(--accent); border:1px solid rgba(245,158,11,0.25); }
+    .badge-teal { background:var(--teal-dim); color:var(--teal); border:1px solid rgba(20,184,166,0.25); }
+    .app-desc { font-size:0.85rem; color:var(--text2); line-height:1.5; }
+
+    .detail-panel { border:1px solid var(--border); border-radius:12px; background:var(--bg2); overflow:hidden; }
+    .detail-header { padding:1.25rem 1.5rem; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:0.75rem; }
+    .detail-name { font-size:1rem; font-weight:600; }
+    .detail-body { padding:1.25rem 1.5rem; display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
+    .agents-wrap { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.5rem; }
+    .agent-pill { font-size:0.7rem; padding:0.2rem 0.6rem; border-radius:12px; white-space:nowrap; }
+    .agent-pill.orch { background:var(--accent-dim); border:1px solid rgba(245,158,11,0.25); color:var(--accent); font-weight:500; }
+    .agent-pill.regular { background:var(--bg3); border:1px solid var(--border); color:var(--text2); }
+    .agent-pill.meta { background:transparent; border:1px solid var(--border2); color:var(--text3); font-style:italic; }
+    .stack-wrap { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.5rem; }
+    .stack-pill { font-family:var(--mono); font-size:0.65rem; padding:0.2rem 0.6rem; border-radius:4px; background:var(--bg3); border:1px solid var(--border); color:var(--text3); }
+
+    .layout-two { display:grid; grid-template-columns:300px 1fr; gap:1.5rem; }
+
+    .pipeline-steps { display:flex; flex-direction:column; gap:0; }
+    .pipeline-step { display:flex; gap:1rem; align-items:flex-start; padding:0.9rem 1.25rem; border:1px solid var(--border); border-radius:0; background:var(--bg2); border-bottom:0; }
+    .pipeline-step:first-child { border-radius:10px 10px 0 0; }
+    .pipeline-step:last-child { border-radius:0 0 10px 10px; border-bottom:1px solid var(--border); }
+    .step-num { font-family:var(--mono); font-size:0.7rem; color:var(--text3); min-width:1.5rem; margin-top:2px; }
+    .step-name { font-size:0.85rem; font-weight:500; }
+    .step-desc { font-size:0.75rem; color:var(--text2); margin-top:2px; }
+    .step-arrow { text-align:center; color:var(--border2); font-size:0.75rem; padding:2px 0; }
+
+    .icp-rows { display:flex; flex-direction:column; gap:0.4rem; margin-top:0.5rem; }
+    .icp-row { display:flex; align-items:center; gap:0.75rem; padding:0.5rem 0.75rem; border-radius:6px; border:1px solid var(--border); background:var(--bg3); font-size:0.8rem; }
+    .icp-score { font-family:var(--mono); font-size:0.7rem; min-width:80px; }
+    .icp-label { color:var(--text2); flex:1; }
+    .icp-badge { font-size:0.65rem; padding:0.15rem 0.5rem; border-radius:8px; font-weight:500; }
+    .icp-green { background:var(--green-dim); color:var(--green); border:1px solid rgba(16,185,129,0.25); }
+    .icp-amber { background:var(--accent-dim); color:var(--accent); border:1px solid rgba(245,158,11,0.25); }
+    .icp-gray { background:var(--bg4); color:var(--text3); border:1px solid var(--border); }
+
+    .flows-list { display:flex; flex-direction:column; gap:0.5rem; }
+    .flow-row { display:flex; align-items:center; gap:0.6rem; padding:0.7rem 1rem; border-radius:8px; background:var(--bg2); border:1px solid var(--border); font-size:0.8rem; }
+    .flow-from, .flow-to { padding:0.2rem 0.6rem; border-radius:5px; font-size:0.7rem; font-weight:500; white-space:nowrap; background:var(--bg3); border:1px solid var(--border2); color:var(--text2); }
+    .flow-arrow { color:var(--text3); font-size:0.8rem; flex-shrink:0; }
+    .flow-label { font-family:var(--mono); font-size:0.65rem; color:var(--text3); }
+
+    .db-table { border:1px solid var(--border); border-radius:10px; overflow:hidden; }
+    .db-row { display:flex; align-items:center; justify-content:space-between; padding:0.6rem 1rem; border-bottom:1px solid var(--border); font-size:0.8rem; }
+    .db-row:last-child { border-bottom:none; }
+    .db-name { font-family:var(--mono); font-size:0.7rem; color:var(--text); }
+    .db-owner { font-size:0.7rem; color:var(--text3); }
+
+    .status-dot { width:6px; height:6px; border-radius:50%; display:inline-block; margin-right:4px; }
+    .status-live { background:var(--green); }
+    .status-active { background:var(--accent); }
+    .status-planned { background:var(--text3); }
+
+    .updated-note { font-family:var(--mono); font-size:0.65rem; color:var(--text3); margin-top:3rem; padding-top:1rem; border-top:1px solid var(--border); }
+
+    @media(max-width:700px) {
+      .layout-two { grid-template-columns:1fr; }
+      .detail-body { grid-template-columns:1fr; }
+      .tabs { overflow-x:auto; }
+      nav .nav-links { display:none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo"><span class="logo-prompt">>_</span> Max Jaffe.ai</a>
+  <ul class="nav-links">
+    <li><a href="/#work-with-me">Work With Me</a></li>
+    <li><a href="/#projects">Projects</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/#contact">Contact</a></li>
+    <li><a href="/lab" style="color:var(--accent)">The Lab</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-label">Technical portfolio</div>
+  <h1>The Lab</h1>
+  <p>The full agent architecture behind every app I've built — how they connect, what each agent does, and how data flows between them.</p>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('platform',this)">Platform ecosystem</div>
+  <div class="tab" onclick="showTab('standalone',this)">Standalone projects</div>
+  <div class="tab" onclick="showTab('flows',this)">Data flows</div>
+  <div class="tab" onclick="showTab('database',this)">Shared database</div>
+</div>
+
+<div id="pane-platform" class="pane active"></div>
+<div id="pane-standalone" class="pane"></div>
+<div id="pane-flows" class="pane"></div>
+<div id="pane-database" class="pane"></div>
+
+<script>
+function showTab(name, el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.pane').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('pane-' + name).classList.add('active');
+}
+
+function roleBadge(roleColor, role) {
+  return `<span class="role-badge badge-${roleColor}">${role}</span>`;
+}
+
+function agentPills(agents) {
+  return agents.map(a => {
+    const cls = a.isMeta ? 'meta' : a.isOrch ? 'orch' : 'regular';
+    const label = a.subtitle ? `${a.name} <span style="opacity:.6;font-weight:400">(${a.subtitle})</span>` : a.name;
+    return `<span class="agent-pill ${cls}">${label}</span>`;
+  }).join('');
+}
+
+function stackPills(stack) {
+  return stack.map(s => `<span class="stack-pill">${s}</span>`).join('');
+}
+
+function statusDot(status) {
+  return `<span class="status-dot status-${status}"></span>`;
+}
+
+function renderAppCard(app, isActive) {
+  return `
+    <div class="app-card ${isActive ? 'active' : ''}" onclick="selectApp('${app.id}')">
+      <div class="app-header">
+        <div class="app-name">${app.name}</div>
+        ${roleBadge(app.roleColor, app.role)}
+      </div>
+      <div class="app-url">${statusDot(app.status)}${app.url}</div>
+      <div class="app-desc" style="margin-top:.5rem">${app.description}</div>
+    </div>`;
+}
+
+function renderDetailPanel(app) {
+  let extra = '';
+
+  if (app.pipeline) {
+    extra += `
+      <div style="grid-column:1/-1">
+        <div class="section-label">Agent pipeline</div>
+        <div class="pipeline-steps">
+          ${app.pipeline.map((s,i) => `
+            <div class="pipeline-step">
+              <div class="step-num">${i+1}</div>
+              <div>
+                <div class="step-name">${s.name}</div>
+                <div class="step-desc">${s.desc}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>`;
+  }
+
+  if (app.icp) {
+    extra += `
+      <div>
+        <div class="section-label">ICP scoring tiers</div>
+        <div class="icp-rows">
+          ${app.icp.map(t => `
+            <div class="icp-row">
+              <span class="icp-score">${t.score}</span>
+              <span class="icp-label">${t.label}</span>
+              <span class="icp-badge icp-${t.tier}">${t.tier === 'green' ? 'Strong fit' : t.tier === 'amber' ? 'Worth reviewing' : 'Skip'}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>`;
+  }
+
+  if (app.supabase) {
+    extra += `<div><div class="section-label">Supabase</div><span class="mono-chip">${app.supabase}</span></div>`;
+  }
+
+  return `
+    <div class="detail-panel">
+      <div class="detail-header">
+        <div>
+          <div class="detail-name">${app.name}</div>
+          <div class="app-url" style="margin-top:2px">${statusDot(app.status)}${app.url}</div>
+        </div>
+        ${roleBadge(app.roleColor, app.role)}
+      </div>
+      <div class="detail-body">
+        <div>
+          <div class="section-label">Agents</div>
+          <div class="agents-wrap">${agentPills(app.agents)}</div>
+        </div>
+        <div>
+          <div class="section-label">Stack</div>
+          <div class="stack-wrap">${stackPills(app.stack)}</div>
+        </div>
+        ${extra}
+      </div>
+    </div>`;
+}
+
+let selectedPlatform = PORTFOLIO.platform.apps[0].id;
+let selectedStandalone = PORTFOLIO.standalone.apps[0].id;
+
+function selectApp(id) {
+  const allApps = [...PORTFOLIO.platform.apps, ...PORTFOLIO.standalone.apps];
+  const app = allApps.find(a => a.id === id);
+  const isPlatform = PORTFOLIO.platform.apps.find(a => a.id === id);
+  if (isPlatform) {
+    selectedPlatform = id;
+    renderPlatform();
+  } else {
+    selectedStandalone = id;
+    renderStandalone();
+  }
+}
+
+function renderPlatform() {
+  const apps = PORTFOLIO.platform.apps;
+  const selected = apps.find(a => a.id === selectedPlatform);
+  document.getElementById('pane-platform').innerHTML = `
+    <div class="section-label" style="margin-bottom:1rem">Shared Supabase · <span class="mono-chip">${PORTFOLIO.platform.supabase}</span></div>
+    <div class="layout-two">
+      <div class="app-grid">${apps.map(a => renderAppCard(a, a.id === selectedPlatform)).join('')}</div>
+      ${renderDetailPanel(selected)}
+    </div>
+    <div class="updated-note">Data source: <span style="color:var(--text2)">portfolio-data.js</span> — update this file to keep the lab current.</div>`;
+}
+
+function renderStandalone() {
+  const apps = PORTFOLIO.standalone.apps;
+  const selected = apps.find(a => a.id === selectedStandalone);
+  document.getElementById('pane-standalone').innerHTML = `
+    <div class="layout-two">
+      <div class="app-grid">${apps.map(a => renderAppCard(a, a.id === selectedStandalone)).join('')}</div>
+      ${renderDetailPanel(selected)}
+    </div>
+    <div class="updated-note">Data source: <span style="color:var(--text2)">portfolio-data.js</span> — update this file to keep the lab current.</div>`;
+}
+
+function renderFlows() {
+  const rows = PORTFOLIO.flows.map(f => `
+    <div class="flow-row">
+      <span class="flow-from">${f.from}</span>
+      <span class="flow-arrow">${f.bidirectional ? '⇄' : '→'}</span>
+      <span class="flow-to">${f.to}</span>
+      <span class="flow-label">${f.label}</span>
+    </div>`).join('');
+
+  document.getElementById('pane-flows').innerHTML = `
+    <div class="section-label" style="margin-bottom:1rem">All data flows across the ecosystem</div>
+    <div class="flows-list">${rows}</div>
+    <div class="updated-note">Data source: <span style="color:var(--text2)">portfolio-data.js</span></div>`;
+}
+
+function renderDatabase() {
+  const db = PORTFOLIO.sharedDb;
+  const rows = db.tables.map(t => `
+    <div class="db-row" style="background:var(--bg2)">
+      <span class="db-name">${t.name}</span>
+      <span class="db-owner">${t.owner}</span>
+    </div>`).join('');
+
+  document.getElementById('pane-database').innerHTML = `
+    <div class="section-label" style="margin-bottom:0.75rem">Platform Supabase · <span class="mono-chip">${db.id}</span></div>
+    <div class="db-table">${rows}</div>
+    <div style="margin-top:1.5rem" class="section-label">Jaffelytics · <span class="mono-chip">skrpyjghjxfktmqylkzr</span> (isolated — no family sharing)</div>
+    <div class="updated-note" style="margin-top:2rem">Data source: <span style="color:var(--text2)">portfolio-data.js</span></div>`;
+}
+
+renderPlatform();
+renderStandalone();
+renderFlows();
+renderDatabase();
+</script>
+</body>
+</html>
